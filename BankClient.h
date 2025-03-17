@@ -12,15 +12,27 @@ using namespace std;
 class clsBankClient : public clsPerson
 {
 private:
-	enum enMode{EmptyMode =0 , UdpateMode =1};
+	enum enMode { EmptyMode = 0, UdpateMode = 1 };
 
 	enMode _mode;
 	string _accountnumber;
 	string _pincode;
 	float _accountbalance;
 
+	static clsBankClient _ConvertLinetoClientObject(string Line, string Separator = "#//#")
+	{
+		vector<string>vClient;
+		vClient = clsStrings::Split(Line, Separator);
+
+		return clsBankClient(enMode::UdpateMode, vClient[0], vClient[1], vClient[2], vClient[3], vClient[4], vClient[5], stod(vClient[6]));
+	}
+
+	static clsBankClient _GetEmptyClientObject()
+	{
+		return clsBankClient(enMode::EmptyMode, "", "", "", "", "", "", 0);
+	}
 public:
-	clsBankClient(enMode mode, string accountnub, string pin, float accountbalance, string firstname, string lastname, string email, string phone) :clsPerson(firstname, lastname, email, phone)
+	clsBankClient(enMode mode, string accountnub, string pin, string firstname, string lastname, string email, string phone, float accountbalance) :clsPerson(firstname, lastname, email, phone)
 	{
 		_mode = mode;
 		_accountnumber = accountnub;
@@ -72,7 +84,7 @@ public:
 		cout << "\nPassWord     : " << PIN_CODE;
 		cout << "\nBALANCE      : " << Account_Balance;
 		cout << "\n---------------------";
-	} 
+	}
 
 	static clsBankClient Find(string Account_Number)
 	{
@@ -83,13 +95,53 @@ public:
 		if (MyFile.is_open())
 		{
 			string Line;
-			while (getline(MyFile,Line))
+			while (getline(MyFile, Line))
 			{
-				
+				clsBankClient Client = _ConvertLinetoClientObject(Line);
+				if (Client.GetAccountNumber() == Account_Number)
+				{
+					MyFile.close();
+					return Client;
+				}
+				vClient.push_back(Client);
 			}
 
-
+			MyFile.close();
 		}
+		return _GetEmptyClientObject();
 	}
-};
+
+	static clsBankClient Find(string Account_Number,string PinCode)
+	{
+		vector <clsBankClient> vClient;
+		fstream MyFile;
+		MyFile.open("Clients.txt", ios::in);
+
+		if (MyFile.is_open())
+		{
+			string Line;
+			while (getline(MyFile, Line))
+			{
+				clsBankClient Client = _ConvertLinetoClientObject(Line);
+				if (Client.GetAccountNumber() == Account_Number && Client.PIN_CODE == PinCode)
+				{
+					MyFile.close();
+					return Client;
+				}
+				vClient.push_back(Client);
+			}
+
+			MyFile.close();
+		}
+		return _GetEmptyClientObject();
+	}
+
+	static bool IsClientExiste(string Account_Number)
+	{
+		clsBankClient Client = clsBankClient::Find(Account_Number);
+		return (!Client.IsEmpty());
+	}
+	
+
+}
 

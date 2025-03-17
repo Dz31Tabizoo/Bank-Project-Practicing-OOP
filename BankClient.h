@@ -24,7 +24,7 @@ private:
 		vector<string>vClient;
 		vClient = clsStrings::Split(Line, Separator);
 
-		return clsBankClient(enMode::UdpateMode, vClient[0], vClient[1], vClient[2], vClient[3], vClient[4], vClient[5], stod(vClient[6]));
+		return clsBankClient(enMode::UdpateMode, vClient[4], vClient[5], vClient[0], vClient[1], vClient[2], vClient[3], stod(vClient[6]));
 	}
 
 	static clsBankClient _GetEmptyClientObject()
@@ -98,14 +98,15 @@ public:
 			while (getline(MyFile, Line))
 			{
 				clsBankClient Client = _ConvertLinetoClientObject(Line);
+
 				if (Client.GetAccountNumber() == Account_Number)
 				{
 					MyFile.close();
 					return Client;
 				}
+
 				vClient.push_back(Client);
 			}
-
 			MyFile.close();
 		}
 		return _GetEmptyClientObject();
@@ -143,5 +144,5 @@ public:
 	}
 	
 
-}
+};
 

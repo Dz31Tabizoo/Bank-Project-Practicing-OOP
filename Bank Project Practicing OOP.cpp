@@ -6,6 +6,28 @@
 
 using namespace std;
 
+void ReadClientInfo(clsBankClient& Client)
+{
+    cout << "\nEnter FirstName: ";
+    Client.Firstname = clsInputValidation::ReadString();
+
+    cout << "\nEnter LastName: ";
+    Client.Lastname = clsInputValidation::ReadString();
+
+    cout << "\nEnter Email: ";
+    Client.Email = clsInputValidation::ReadString();
+
+    cout << "\nEnter Phone: ";
+    Client.Phone = clsInputValidation::ReadString();
+
+    cout << "\nEnter PinCode: ";
+    Client.PIN_CODE = clsInputValidation::ReadString();
+
+    cout << "\nEnter Account Balance: ";
+    Client.Account_Balance = clsInputValidation::ReadDoubleNumber();
+    
+}
+
 void UpdateClient(clsBankClient& Client)
 {
     string AccountNumber = "";
@@ -24,7 +46,9 @@ void UpdateClient(clsBankClient& Client)
     Client1.Print();
 
     cout << "\n\n   Updating Client Info     ";
+    cout << "\n-------------------------------\n";
 
+    ReadClientInfo(Client1);
 
 }
 

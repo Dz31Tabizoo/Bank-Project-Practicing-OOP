@@ -58,7 +58,7 @@ public:
 		return x;
 	}
 
-	static double ReadDoubleNumber(string ErrorMessage)
+	static double ReadDoubleNumber(string ErrorMessage="Wrong input, try again Please.")
 	{
 		double x;
 

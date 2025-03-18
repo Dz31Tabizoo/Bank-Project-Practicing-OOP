@@ -42,7 +42,7 @@ public:
 		return _lastname;
 	}
 
-	__declspec(property(get = GetLastName, put = SetLastname)) string Lastname;
+	__declspec(property(get = GetLastName, put = SetLastName)) string Lastname;
 
 	void SetEmail(string Email)
 	{

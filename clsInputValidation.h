@@ -99,5 +99,12 @@ public:
 	{
 		return clsDate::IsValidDate(Date);
 	}
+
+	static string ReadString()
+	{
+		string X = "";
+		getline(cin >> ws, X);
+		return X;
+	}
 };
 

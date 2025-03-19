@@ -49,7 +49,21 @@ void UpdateClient(clsBankClient& Client)
     cout << "\n-------------------------------\n";
 
     ReadClientInfo(Client1);
+    clsBankClient::enSaveResult SaveResult;
+    SaveResult = Client1.Save();
 
+    switch (SaveResult)
+    {
+    case clsBankClient::svFaildEmptyObject:
+        cout << "\nError, account was not saved because it's emty\n";
+        break;
+    case clsBankClient::svSucceeded:
+        cout << "\n Account Updated Successfully ^_^\n";
+        Client1.Print();
+        break;
+    default:
+        break;
+    }
 }
 
 int main()
@@ -63,9 +77,10 @@ int main()
     clsBankClient Client2 = clsBankClient::Find("A102", "1234");
     Client2.Print();
 
-
+    
 
     system("pause>0");
     return 0;
+
 }
 

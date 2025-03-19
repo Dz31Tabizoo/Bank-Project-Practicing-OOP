@@ -12,13 +12,26 @@ using namespace std;
 class clsBankClient : public clsPerson
 {
 private:
-	enum enMode { EmptyMode = 0, UdpateMode = 1 };
 
+	enum enMode { EmptyMode = 0, UdpateMode = 1 };
 	enMode _mode;
 	string _accountnumber;
 	string _pincode;
 	float _accountbalance;
 
+	static string _ConvertClientObjectToLine(clsBankClient Client, string Seperator = "#//#")
+	{
+		string stClientRecord = "";
+		stClientRecord += Client.Firstname + Seperator;
+		stClientRecord += Client.Lastname + Seperator;
+		stClientRecord += Client.Email + Seperator;
+		stClientRecord += Client.Phone + Seperator;
+		stClientRecord += Client.GetAccountNumber() + Seperator;
+		stClientRecord += Client.PIN_CODE + Seperator;
+		stClientRecord += to_string(Client.Account_Balance);
+
+		return stClientRecord;
+	}
 	static clsBankClient _ConvertLinetoClientObject(string Line, string Separator = "#//#")
 	{
 		vector<string>vClient;
@@ -31,6 +44,63 @@ private:
 	{
 		return clsBankClient(enMode::EmptyMode, "", "", "", "", "", "", 0);
 	}
+
+	static vector <clsBankClient> _LoadClientDataFromFile()
+	{
+		vector<clsBankClient> vClient;
+
+		fstream MyFile;
+		MyFile.open("Clients.txt", ios::in);
+
+		if (MyFile.is_open())
+		{
+			string Line;
+
+			while (getline(MyFile, Line))
+			{
+				clsBankClient Client = _ConvertLinetoClientObject(Line);
+				vClient.push_back(Client);
+			}
+			MyFile.close();
+		}
+
+		return vClient;
+	}
+	static void _SaveClientsDataToFile(vector <clsBankClient> vClients)
+	{
+		fstream MyFile;
+		MyFile.open("Clients.txt", ios::out);
+
+		string DataLine;
+
+		if (MyFile.is_open())
+		{
+			for (clsBankClient c : vClients)
+			{
+				DataLine = _ConvertClientObjectToLine(c);
+					MyFile << DataLine << endl;
+			}
+			
+		}
+		MyFile.close();
+	}
+	void _Update()
+	{
+		vector <clsBankClient> _vClients;
+		_vClients = _LoadClientDataFromFile();
+		
+		for (clsBankClient& C : _vClients)
+		{
+			if (C.GetAccountNumber() == GetAccountNumber())
+			{
+				C = *this;
+				break;
+			}
+		}		
+	}
+
+	
+
 public:
 	// CONSTRUCTOR
 	clsBankClient(enMode mode, string accountnub, string pin, string firstname, string lastname, string email, string phone, float accountbalance) :clsPerson(firstname, lastname, email, phone)
@@ -144,6 +214,23 @@ public:
 		return (!Client.IsEmpty());
 	}
 	
+	enum enSaveResult { svFaildEmptyObject = 0, svSucceeded = 1 };
 
+	enSaveResult Save()
+	{
+		switch (_mode)
+		{
+		case clsBankClient::EmptyMode:
+			return enSaveResult::svFaildEmptyObject;
+			break;
+		case clsBankClient::UdpateMode:
+
+			_Update();
+			return enSaveResult::svSucceeded;
+			break;
+		default:
+			break;
+		}
+	}
 };
 

@@ -13,7 +13,7 @@ class clsBankClient : public clsPerson
 {
 private:
 
-	enum enMode { EmptyMode = 0, UdpateMode = 1 };
+	enum enMode { EmptyMode = 0, UdpateMode = 1, AddNewMode = 2 };
 	enMode _mode;
 	string _accountnumber;
 	string _pincode;
@@ -40,11 +40,22 @@ private:
 		return clsBankClient(enMode::UdpateMode, vClient[4], vClient[5], vClient[0], vClient[1], vClient[2], vClient[3], stod(vClient[6]));
 	}
 
-	static clsBankClient _GetEmptyClientObject()
+	void _AddDataLineToFile(string Dataline)
 	{
-		return clsBankClient(enMode::EmptyMode, "", "", "", "", "", "", 0);
+		fstream Myfile;
+		Myfile.open("Clients.txt",ios::out | ios::app);
+		if (Myfile.is_open())
+		{
+			Myfile << Dataline << endl;
+			Myfile.close();
+		}
 	}
 
+	void _AddNew()
+	{
+		_AddDataLineToFile(_ConvertClientObjectToLine(*this));
+	}
+	
 	static vector <clsBankClient> _LoadClientDataFromFile()
 	{
 		vector<clsBankClient> vClient;
@@ -66,6 +77,7 @@ private:
 
 		return vClient;
 	}
+
 	static void _SaveClientsDataToFile(vector <clsBankClient> vClients)
 	{
 		fstream MyFile;
@@ -97,10 +109,9 @@ private:
 				break;
 			}
 		}		
+		_SaveClientsDataToFile(_vClients);
 	}
-
 	
-
 public:
 	// CONSTRUCTOR
 	clsBankClient(enMode mode, string accountnub, string pin, string firstname, string lastname, string email, string phone, float accountbalance) :clsPerson(firstname, lastname, email, phone)
@@ -155,6 +166,16 @@ public:
 		cout << "\nPassWord     : " << PIN_CODE;
 		cout << "\nBALANCE      : " << Account_Balance;
 		cout << "\n---------------------";
+	}
+
+	static clsBankClient _GetAddNewClientObject(string AccountNumber)
+	{
+		return clsBankClient(enMode::AddNewMode, AccountNumber, "", "", "", "", "", 0);
+	}
+
+	static clsBankClient _GetEmptyClientObject()
+	{
+		return clsBankClient(enMode::EmptyMode, "", "", "", "", "", "", 0);
 	}
 
 	static clsBankClient Find(string Account_Number)
@@ -214,7 +235,7 @@ public:
 		return (!Client.IsEmpty());
 	}
 	
-	enum enSaveResult { svFaildEmptyObject = 0, svSucceeded = 1 };
+	enum enSaveResult { svFaildEmptyObject = 0, svSucceeded = 1, FailedAccountNumberEsiste=2 };
 
 	enSaveResult Save()
 	{
@@ -228,6 +249,19 @@ public:
 			_Update();
 			return enSaveResult::svSucceeded;
 			break;
+
+		case clsBankClient::AddNewMode:
+			if (clsBankClient::IsClientExiste(_accountnumber))
+			{
+				return enSaveResult::FailedAccountNumberEsiste;
+			}
+			else
+			{
+				_AddNew();
+				_mode = enMode::UdpateMode;
+				return enSaveResult::svSucceeded;
+			}
+				
 		default:
 			break;
 		}

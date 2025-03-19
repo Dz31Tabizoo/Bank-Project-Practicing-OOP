@@ -66,21 +66,51 @@ void UpdateClient(clsBankClient& Client)
     }
 }
 
-int main()
+void AddNewClient()
+{
+    string AccountNumber = "";
+    cout << "\nEnter client Account Number: ";
+    AccountNumber = clsInputValidation::ReadString();
 
+    while (clsBankClient::IsClientExiste(AccountNumber))
+    {
+        cout << "\nAccount Number already existe, Enter another One";
+        AccountNumber = clsInputValidation::ReadString();
+
+    }
+    clsBankClient NewClient = clsBankClient::_GetAddNewClientObject(AccountNumber);
+    ReadClientInfo(NewClient);
+
+    clsBankClient::enSaveResult SaveResult;
+    SaveResult = NewClient.Save();
+
+    switch (SaveResult)
+    {
+    case clsBankClient::svFaildEmptyObject:
+        break;
+    case clsBankClient::svSucceeded:
+        break;
+    default:
+        break;
+    }
+}
+
+int main()
 {
     //Find whith Acc Number
     clsBankClient Client1 = clsBankClient::Find("A101");
     Client1.Print();
     cout << "\n" << Client1.IsClientExiste("A101");
     //Find With Accnumber+Pincode
-    clsBankClient Client2 = clsBankClient::Find("A102", "1234");
+    clsBankClient Client2 = clsBankClient::Find("A102", "4321");
     Client2.Print();
 
+
+
+    
     
 
     system("pause>0");
     return 0;
-
 }
 

@@ -255,8 +255,12 @@ public:
 
 		for (clsBankClient& C : vClients)
 		{
-			C._MarkforDelete = true;
-			break;
+			if (C.GetAccountNumber() == _accountnumber)
+			{
+				C._MarkforDelete = true;
+				break;
+			}
+			
 		}
 		_SaveClientsDataToFile(vClients);
 		*this = _GetEmptyClientObject();
@@ -264,6 +268,11 @@ public:
 	}
 
 	enum enSaveResult { svFaildEmptyObject = 0, svSucceeded = 1, FailedAccountNumberEsiste=2 };
+
+	static vector<clsBankClient> GetClientsFromFile()
+	{
+		return _LoadClientDataFromFile();
+	}
 
 	enSaveResult Save()
 	{

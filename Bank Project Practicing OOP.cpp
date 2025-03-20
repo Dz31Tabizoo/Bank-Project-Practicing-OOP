@@ -114,9 +114,10 @@ void DeleteClient()
 
     cout << "\nAre You sure you wanna delete this Client ? Press [Y] for yes / [N] for No\n";
     cin >> answer;
-
+    
     if (tolower(answer)=='y')
     {
+     
         if (ClientToDelete.Delete())
         {
             cout << "\n Client Deleted Successfully ^_^\n";
@@ -133,8 +134,52 @@ void DeleteClient()
 
 }
 
+void PrintClientRecordLine(clsBankClient Client)
+{
+
+    cout << "| " << setw(15) << left << Client.GetAccountNumber();
+    cout << "| " << setw(20) << left << Client.FullName();
+    cout << "| " << setw(12) << left << Client.Phone;
+    cout << "| " << setw(20) << left << Client.Email;
+    cout << "| " << setw(10) << left << Client.PIN_CODE;
+    cout << "| " << setw(12) << left << Client.Account_Balance;
+
+}
+
+void ShowClientsList()
+{
+    vector <clsBankClient> vClients = clsBankClient::GetClientsFromFile();
+
+    cout << "\n\t\t\t\t\tClient List (" << vClients.size() << ") Client(s).";
+    cout << "\n_______________________________________________________";
+    cout << "_________________________________________\n" << endl;
+
+    cout << "| " << left << setw(15) << "Accout Number";
+    cout << "| " << left << setw(20) << "Client Name";
+    cout << "| " << left << setw(12) << "Phone";
+    cout << "| " << left << setw(20) << "Email";
+    cout << "| " << left << setw(10) << "Pin Code";
+    cout << "| " << left << setw(12) << "Balance";
+    cout << "\n_______________________________________________________";
+    cout << "_________________________________________\n" << endl;
+    if (vClients.size()==0)
+    {
+        cout << "\nNumber of Client is 0 -_-" << endl;
+    }
+    else
+    {
+        for (clsBankClient& C : vClients)
+        {
+            PrintClientRecordLine(C);
+            cout << endl;
+        }
+    }
+   
+}
+
 int main()
 {
+    ///Test :
 
     //Find whith Acc Number
  //   clsBankClient Client1 = clsBankClient::Find("A101");
@@ -147,8 +192,9 @@ int main()
     //UpdateClient(Client2);
     //Add new
    // AddNewClient();
-    DeleteClient();
+   // DeleteClient();
     
+  // ShowClientsList();
     
 
     system("pause>0");

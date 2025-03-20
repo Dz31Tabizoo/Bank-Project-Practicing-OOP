@@ -134,6 +134,15 @@ void DeleteClient()
 
 }
 
+void PrintClientRecordLineBalances(clsBankClient Client)
+{
+
+    cout << "| " << setw(15) << left << Client.GetAccountNumber();
+    cout << "| " << setw(20) << left << Client.FullName();
+    cout << "| " << setw(12) << left << Client.Account_Balance;
+
+}
+
 void PrintClientRecordLine(clsBankClient Client)
 {
 
@@ -180,7 +189,7 @@ void ShowClientsList()
 void ShowTotalBalances()
 {
     vector <clsBankClient> vClients = clsBankClient::GetClientsFromFile();
-
+    double Total = 0;
     cout << "\n\t\t\t\t\tClient List (" << vClients.size() << ") Client(s).";
     cout << "\n_______________________________________________________";
     cout << "_________________________________________\n" << endl;
@@ -190,8 +199,22 @@ void ShowTotalBalances()
     cout << "\n_______________________________________________________";
     cout << "_________________________________________\n" << endl;
 
+    if (vClients.size() == 0)
+    {
+        cout << "\nTotal balances = 0, there is n Client in Liste\n";
+    }
+    else
+    {
+        for (clsBankClient& C : vClients)
+        {
+            PrintClientRecordLineBalances(C);
+            Total += C.Account_Balance;
+            cout << endl;
+        }
+    }
 
-
+    cout << "\n\t\t\tTotal Balances = " << Total << "DZA.";
+    cout << "\n_______________________________________________________";
 
 }
 
@@ -213,7 +236,7 @@ int main()
    // DeleteClient();
     
   // ShowClientsList();
-    
+    ShowTotalBalances();
 
     system("pause>0");
     return 0;

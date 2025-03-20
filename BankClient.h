@@ -18,6 +18,7 @@ private:
 	string _accountnumber;
 	string _pincode;
 	float _accountbalance;
+	bool _MarkforDelete = 0;
 
 	static string _ConvertClientObjectToLine(clsBankClient Client, string Seperator = "#//#")
 	{
@@ -39,7 +40,7 @@ private:
 
 		return clsBankClient(enMode::UdpateMode, vClient[4], vClient[5], vClient[0], vClient[1], vClient[2], vClient[3], stod(vClient[6]));
 	}
-
+	
 	void _AddDataLineToFile(string Dataline)
 	{
 		fstream Myfile;
@@ -89,8 +90,12 @@ private:
 		{
 			for (clsBankClient c : vClients)
 			{
-				DataLine = _ConvertClientObjectToLine(c);
+				if (c.MarkeForDelete == false)
+				{
+					DataLine = _ConvertClientObjectToLine(c);
 					MyFile << DataLine << endl;
+				}
+				
 			}
 			
 		}
@@ -123,6 +128,15 @@ public:
 	}
 
 	//properties
+	void SetMarkforDelete(bool X)
+	{
+		_MarkforDelete = X;
+	}
+	bool GetMarkforDelete()
+	{
+		return _MarkforDelete;
+	}
+	__declspec(property(get = GetMarkforDelete, put = SetMarkforDelete)) bool MarkeForDelete;
 
 	bool IsEmpty()
 	{
@@ -235,6 +249,20 @@ public:
 		return (!Client.IsEmpty());
 	}
 	
+	bool Delete()
+	{
+		vector<clsBankClient> vClients = _LoadClientDataFromFile();
+
+		for (clsBankClient& C : vClients)
+		{
+			C._MarkforDelete = true;
+			break;
+		}
+		_SaveClientsDataToFile(vClients);
+		*this = _GetEmptyClientObject();
+		return true;
+	}
+
 	enum enSaveResult { svFaildEmptyObject = 0, svSucceeded = 1, FailedAccountNumberEsiste=2 };
 
 	enSaveResult Save()
@@ -261,7 +289,7 @@ public:
 				_mode = enMode::UdpateMode;
 				return enSaveResult::svSucceeded;
 			}
-				
+		
 		default:
 			break;
 		}

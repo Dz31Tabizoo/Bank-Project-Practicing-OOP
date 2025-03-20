@@ -69,7 +69,7 @@ void UpdateClient(clsBankClient& Client)
 void AddNewClient()
 {
     string AccountNumber = "";
-    cout << "\nEnter client Account Number: ";
+    cout << "\n\n Enter client Account Number: ";
     AccountNumber = clsInputValidation::ReadString();
 
     while (clsBankClient::IsClientExiste(AccountNumber))
@@ -87,26 +87,67 @@ void AddNewClient()
     switch (SaveResult)
     {
     case clsBankClient::svFaildEmptyObject:
+        cout << "\n No Account Added ^_^\n";
         break;
     case clsBankClient::svSucceeded:
+        cout << "\n Account Added Successfully ^_^\n";
         break;
     default:
         break;
     }
 }
 
+void DeleteClient()
+{
+    string AccountNumber = "";
+    cout << "Enter a Account number To Delete\n";
+    AccountNumber = clsInputValidation::ReadString();
+
+    while (!clsBankClient::IsClientExiste(AccountNumber))
+    {
+        cout << "\nAcount Not founded,try again\n";
+        AccountNumber = clsInputValidation::ReadString();
+    }
+    clsBankClient ClientToDelete = clsBankClient::Find(AccountNumber);
+    ClientToDelete.Print();
+    char answer = 'y';
+
+    cout << "\nAre You sure you wanna delete this Client ? Press [Y] for yes / [N] for No\n";
+    cin >> answer;
+
+    if (tolower(answer)=='y')
+    {
+        if (ClientToDelete.Delete())
+        {
+            cout << "\n Client Deleted Successfully ^_^\n";
+            ClientToDelete.Print();  // print an empty Object or Client
+        }
+        else
+        {
+            cout << "\nError Client Was Not Deleted\n";
+        }
+    }
+
+
+
+
+}
+
 int main()
 {
+
     //Find whith Acc Number
-    clsBankClient Client1 = clsBankClient::Find("A101");
-    Client1.Print();
-    cout << "\n" << Client1.IsClientExiste("A101");
+ //   clsBankClient Client1 = clsBankClient::Find("A101");
+  //  Client1.Print();
+   // cout << "\n" << Client1.IsClientExiste("A101");
     //Find With Accnumber+Pincode
-    clsBankClient Client2 = clsBankClient::Find("A102", "4321");
-    Client2.Print();
-
-
-
+   // clsBankClient Client2 = clsBankClient::Find("A102", "4321");
+    //Client2.Print();
+    // udating
+    //UpdateClient(Client2);
+    //Add new
+   // AddNewClient();
+    DeleteClient();
     
     
 

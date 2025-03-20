@@ -177,6 +177,24 @@ void ShowClientsList()
    
 }
 
+void ShowTotalBalances()
+{
+    vector <clsBankClient> vClients = clsBankClient::GetClientsFromFile();
+
+    cout << "\n\t\t\t\t\tClient List (" << vClients.size() << ") Client(s).";
+    cout << "\n_______________________________________________________";
+    cout << "_________________________________________\n" << endl;
+    cout << "| " << left << setw(15) << "Accout Number";
+    cout << "| " << left << setw(20) << "Client Name";
+    cout << "| " << left << setw(12) << "Balance";
+    cout << "\n_______________________________________________________";
+    cout << "_________________________________________\n" << endl;
+
+
+
+
+}
+
 int main()
 {
     ///Test :

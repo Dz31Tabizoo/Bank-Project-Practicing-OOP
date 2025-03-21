@@ -83,6 +83,31 @@ public:
 
 	}
 
+	static short ReadshortNumber(string ErrorMessage = "Invalide input, Please Enter egain\n")
+	{
+		short x;
+
+		while (!(cin >> x)) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << ErrorMessage;
+		}
+		return x;
+	}
+
+	static double ReadshortBetween(string ErrorMessage, short from, short to)
+	{
+		
+		short x = ReadDoubleNumber();
+
+		while (!IsNumberBetween(x, from, to))
+		{
+			cout << ErrorMessage;
+			x = ReadDoubleNumber();
+		}
+		return x;
+	}
+
 	static double ReadDoubleBetween(string ErrorMessage, double from, double to)
 	{
 		double x = ReadDoubleNumber();

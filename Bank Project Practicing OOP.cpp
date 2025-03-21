@@ -3,6 +3,8 @@
 #include "BankClient.h"
 #include "clsPerson.h"
 #include "clsInputValidation.h"
+#include "clsScreen.h"
+#include"clsMainScreen.h"
 
 using namespace std;
 
@@ -236,7 +238,10 @@ int main()
    // DeleteClient();
     
   // ShowClientsList();
-    ShowTotalBalances();
+   //ShowTotalBalances();
+
+
+    clsMainScreen::ShowMainMenue();
 
     system("pause>0");
     return 0;

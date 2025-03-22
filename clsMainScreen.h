@@ -5,6 +5,9 @@
 #include<string>
 #include<iomanip>
 #include"clsInputValidation.h"
+#include"clsClientListScreen.h"
+#include"clsAddClientScreen.h"
+#include"clsDeleteClientScreen.h"
 
 using namespace std;
 
@@ -28,10 +31,32 @@ private:
 
 	static void _GoBackToMainMenueScreen()
 	{
-		system("cls");
-		cout << "Press eny key to go back to main menue screen" << endl;
+		
+		cout << "\n\tPress eny key to go back to main menue screen" << endl;
 		system("pause>0");
 		ShowMainMenue();
+	}
+
+	static void _ShowAddNewClientsScreen()
+	{
+		system("cls");
+		clsAddClientScreen::AddNewClientScreen();
+		_GoBackToMainMenueScreen();
+	}
+
+	static void _ShowAllClientsScreen()
+	{
+		system("cls");
+		clsClientListScreen::ShowClientsList();
+		_GoBackToMainMenueScreen();
+
+	}
+
+	static void _ShowDeletClientScreen()
+	{
+		system("cls");
+		clsDeleteClientScreen::DeleteClientScreen();
+		_GoBackToMainMenueScreen();
 	}
 
 	static void _PerformMainMenueOptions(enMainManueOptions Main_M_Option)
@@ -39,16 +64,17 @@ private:
 		switch (Main_M_Option)
 		{
 		case clsMainScreen::eListClient:
-			system("cls");
-			_GoBackToMainMenueScreen();
+			
+			_ShowAllClientsScreen();
+			
+			
 			break;
 		case clsMainScreen::eAddNewClient:
-			system("cls");
-			_GoBackToMainMenueScreen();
-			break;
+			
+			_ShowAddNewClientsScreen();
+
 		case clsMainScreen::eDeleteClient:
-			system("cls");
-			_GoBackToMainMenueScreen();
+			_ShowDeletClientScreen();
 			break;
 		case clsMainScreen::eUpdateClient:
 			system("cls");
@@ -102,6 +128,7 @@ public:
 		cout << setw(38) << left << "" << "\t[6] Transactions.\n";
 		cout << setw(38) << left << "" << "\t[7] Manage Users.\n";
 		cout << setw(38) << left << "" << "\t[8] Logout.\n";
+
 		_PerformMainMenueOptions(enMainManueOptions(_ReadMainMenueOption()));
 	}
 

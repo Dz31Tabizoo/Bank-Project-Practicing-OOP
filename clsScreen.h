@@ -11,6 +11,10 @@ protected:
 	{
 		cout << setw(37) << left <<"" << "*********************************" << endl;
 		cout << setw(37) << left <<"" << "\t\t" << Title << endl;
+		if (Subtitle != "")
+		{
+			cout << setw(37) << left << "" << "\t" << Subtitle << endl;
+		}
 		cout << setw(37) << left <<"" << "_________________________________" << endl;
 	}
 

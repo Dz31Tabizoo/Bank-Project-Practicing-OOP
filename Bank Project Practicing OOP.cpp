@@ -5,6 +5,7 @@
 #include "clsInputValidation.h"
 #include "clsScreen.h"
 #include"clsMainScreen.h"
+#include "clsUpdateClientScreen.h"
 
 using namespace std;
 
@@ -51,7 +52,9 @@ void UpdateClient(clsBankClient& Client)
     cout << "\n-------------------------------\n";
 
     ReadClientInfo(Client1);
+
     clsBankClient::enSaveResult SaveResult;
+
     SaveResult = Client1.Save();
 
     switch (SaveResult)

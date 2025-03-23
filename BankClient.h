@@ -101,6 +101,7 @@ private:
 		}
 		MyFile.close();
 	}
+
 	void _Update()
 	{
 		vector <clsBankClient> _vClients;
@@ -110,7 +111,7 @@ private:
 		{
 			if (C.GetAccountNumber() == GetAccountNumber())
 			{
-				C = *this;
+				C = *this;  // this is the update
 				break;
 			}
 		}		
@@ -279,8 +280,10 @@ public:
 		switch (_mode)
 		{
 		case clsBankClient::EmptyMode:
+
 			return enSaveResult::svFaildEmptyObject;
 			break;
+
 		case clsBankClient::UdpateMode:
 
 			_Update();
@@ -288,6 +291,7 @@ public:
 			break;
 
 		case clsBankClient::AddNewMode:
+
 			if (clsBankClient::IsClientExiste(_accountnumber))
 			{
 				return enSaveResult::FailedAccountNumberEsiste;

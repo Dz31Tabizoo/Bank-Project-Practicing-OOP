@@ -8,6 +8,7 @@
 #include"clsClientListScreen.h"
 #include"clsAddClientScreen.h"
 #include"clsDeleteClientScreen.h"
+#include"clsUpdateClientScreen.h"
 
 using namespace std;
 
@@ -35,6 +36,15 @@ private:
 		cout << "\n\tPress eny key to go back to main menue screen" << endl;
 		system("pause>0");
 		ShowMainMenue();
+	}
+
+	static void _ShowUpdateClientScreen()
+	{
+		system("cls");
+
+		clsUpdateClientScreen::ShowUpdateClientScreen();
+
+		_GoBackToMainMenueScreen();
 	}
 
 	static void _ShowAddNewClientsScreen()
@@ -74,12 +84,17 @@ private:
 			_ShowAddNewClientsScreen();
 
 		case clsMainScreen::eDeleteClient:
+
 			_ShowDeletClientScreen();
+			
 			break;
+		
 		case clsMainScreen::eUpdateClient:
-			system("cls");
-			_GoBackToMainMenueScreen();
+
+			_ShowUpdateClientScreen();
+			
 			break;
+		
 		case clsMainScreen::eMngUsers:
 			system("cls");
 			_GoBackToMainMenueScreen();

@@ -9,6 +9,7 @@
 #include"clsAddClientScreen.h"
 #include"clsDeleteClientScreen.h"
 #include"clsUpdateClientScreen.h"
+#include "clsFindClient.h"
 
 using namespace std;
 
@@ -61,7 +62,13 @@ private:
 		_GoBackToMainMenueScreen();
 
 	}
-
+	static void _ShowFindClientScreen()
+	{
+		system("cls");
+		clsFindClient::FindClient();
+		
+		_GoBackToMainMenueScreen();
+	}
 	static void _ShowDeletClientScreen()
 	{
 		system("cls");
@@ -88,7 +95,7 @@ private:
 			_ShowDeletClientScreen();
 			
 			break;
-		
+			
 		case clsMainScreen::eUpdateClient:
 
 			_ShowUpdateClientScreen();
@@ -100,8 +107,9 @@ private:
 			_GoBackToMainMenueScreen();
 			break;
 		case clsMainScreen::eFindClient:
-			system("cls");
-			_GoBackToMainMenueScreen();
+
+			_ShowFindClientScreen();
+
 			break;
 		case clsMainScreen::eLogout:
 			system("cls");

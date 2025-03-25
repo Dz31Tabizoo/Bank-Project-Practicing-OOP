@@ -11,6 +11,7 @@
 #include"clsUpdateClientScreen.h"
 #include "clsFindClient.h"
 #include "clsTransactionsScreen.h"
+#include "ManageUsersScreen.h"
 
 using namespace std;
 
@@ -24,9 +25,7 @@ private:
 		eListClient = 1, eAddNewClient = 2, eDeleteClient = 3, eUpdateClient = 4, eMngUsers = 7, eFindClient = 5, eLogout = 8, eTransaction = 6
 	};
 	
-	enum enUsers {
-		enList = 1, enAddUSers = 2, enDeleteUSers = 3, enUpdateUSer = 4, enFindUser = 5, enMainMenueu = 6
-	};
+	
 
 	static void _GoBackToMainMenueScreen()
 	{
@@ -56,7 +55,13 @@ private:
 		clsAddClientScreen::AddNewClientScreen();
 		_GoBackToMainMenueScreen();
 	}
+	static void _ShowManageUsersScreen()
+	{
+		system("cls");
+		ManageUsersScreen::ShowMageUSersMenue();
+		_GoBackToMainMenueScreen();
 
+	}
 	static void _ShowAllClientsScreen()
 	{
 		system("cls");
@@ -105,8 +110,7 @@ private:
 			break;
 		
 		case clsMainScreen::eMngUsers:
-			system("cls");
-			_GoBackToMainMenueScreen();
+			_ShowManageUsersScreen();
 			break;
 		case clsMainScreen::eFindClient:
 

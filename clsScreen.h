@@ -8,7 +8,7 @@ protected:
 
 	static void GetDate(clsDate Date)
 	{
-		cout << setw(37) << left << "" << "\t\t";
+		cout << setw(37) << left << "" << "\t\t ";
 		Date.Print();
 	}
 

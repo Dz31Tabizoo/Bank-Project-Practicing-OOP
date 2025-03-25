@@ -153,10 +153,12 @@ public:
 	{
 		_accountbalance = newbalance;
 	}
+	
 	float GetAccountBalance()
 	{
 		return _accountbalance;
 	}
+
 	_declspec(property(get = GetAccountBalance, put = SetAccountbalance)) float Account_Balance;
 
 	void SetPincode(string pin)
@@ -253,6 +255,21 @@ public:
 	{
 		this->Account_Balance += Amount;
 		Save();
+	}
+	bool Withdrow(double amount)
+	{
+
+		if (this->Account_Balance > amount)
+		{
+			cout << "\nyou can't withdrow this [" << amount << "] mothertucker " ;
+			return false;
+		}
+		else
+		{
+			this->Account_Balance -= amount;
+			Save();
+		}
+		
 	}
 
 	bool Delete()

@@ -4,11 +4,14 @@
 #include <iostream>
 #include <iomanip>
 #include "clsInputValidation.h"
+#include "clsWithdrowScreen.h"
 
 using namespace std;
 class clsDepositScreen:protected clsScreen
 {
 private:
+	friend class clswithdrowScreen;
+
 	static string _ReadAccountNumber()
 	{
 		cout << "\nEnter your Account Number: ";

@@ -109,9 +109,9 @@ private:
 		
 		for (clsBankClient& C : _vClients)
 		{
-			if (C.GetAccountNumber() == GetAccountNumber())
+			if (C.GetAccountNumber() == this->GetAccountNumber())
 			{
-				C = *this;  // this is the update
+				C = *this;  // this is the update // *this = value of client
 				break;
 			}
 		}		
@@ -249,7 +249,12 @@ public:
 		clsBankClient Client = clsBankClient::Find(Account_Number);
 		return (!Client.IsEmpty());
 	}
-	
+	void Deposit(double Amount)
+	{
+		this->Account_Balance += Amount;
+		Save();
+	}
+
 	bool Delete()
 	{
 		vector<clsBankClient> vClients = _LoadClientDataFromFile();

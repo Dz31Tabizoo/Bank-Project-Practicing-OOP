@@ -10,6 +10,7 @@
 #include"clsDeleteClientScreen.h"
 #include"clsUpdateClientScreen.h"
 #include "clsFindClient.h"
+#include "clsTransactionsScreen.h"
 
 using namespace std;
 
@@ -22,11 +23,7 @@ private:
 	enum enMainManueOptions {
 		eListClient = 1, eAddNewClient = 2, eDeleteClient = 3, eUpdateClient = 4, eMngUsers = 7, eFindClient = 5, eLogout = 8, eTransaction = 6
 	};
-	enum enTransactions
-	{
-		enDeposit = 1, enWithdrow = 2, enTotalBalances = 3, enMainMenue = 4
-	};
-
+	
 	enum enUsers {
 		enList = 1, enAddUSers = 2, enDeleteUSers = 3, enUpdateUSer = 4, enFindUser = 5, enMainMenueu = 6
 	};
@@ -38,7 +35,12 @@ private:
 		system("pause>0");
 		ShowMainMenue();
 	}
-
+	static void _ShowTransactionsMenue()
+	{
+		system("cls");
+		clsTransactionsScreen::ShowTransactionsMenue();
+		_GoBackToMainMenueScreen();
+	}
 	static void _ShowUpdateClientScreen()
 	{
 		system("cls");
@@ -116,8 +118,9 @@ private:
 			_GoBackToMainMenueScreen();
 			break;
 		case clsMainScreen::eTransaction:
-			system("cls");
-			//go back to transactions screen
+			
+			_ShowTransactionsMenue();
+			
 			break;
 		default:
 			break;
@@ -140,9 +143,9 @@ public:
 		system("cls");
 		_DrawScreenHeader("Main Screen");
 
-		cout << setw(38) << left << "" << "==============================" << endl;
+		cout << setw(38) << left << "" << "================================" << endl;
 		cout << setw(38) << left << "" << "\t\tMain Menue\n";
-		cout << setw(38) << left << "" << "==============================" << endl;
+		cout << setw(38) << left << "" << "================================" << endl;
 		cout << setw(38) << left << "" << "\t[1] Show Client List.\n";
 		cout << setw(38) << left << "" << "\t[2] Add New Client.\n";
 		cout << setw(38) << left << "" << "\t[3] Delete Client.\n";

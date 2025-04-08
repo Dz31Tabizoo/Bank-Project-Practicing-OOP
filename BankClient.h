@@ -118,6 +118,7 @@ private:
 		_SaveClientsDataToFile(_vClients);
 	}
 	
+
 public:
 	// CONSTRUCTOR
 	clsBankClient(enMode mode, string accountnub, string pin, string firstname, string lastname, string email, string phone, float accountbalance) :clsPerson(firstname, lastname, email, phone)

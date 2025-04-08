@@ -3,7 +3,7 @@
 #include "clsScreen.h"
 #include <iomanip>
 #include <iostream>
-#include"clsInputValidation.h"
+#include "clsInputValidation.h"
 
 using namespace std;
 
@@ -21,6 +21,7 @@ private :
 		short Choise = clsInputValidation::ReadshortBetween("\t\t\t\tWrong Choise, Please select your choise from 1 to 4:\n", 1, 6);
 		return Choise;
 	}
+
 	static void _performUserMenueChoises(enUsers Choise)
 	{
 		switch (Choise)

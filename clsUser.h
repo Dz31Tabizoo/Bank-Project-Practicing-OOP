@@ -13,11 +13,12 @@ class clsUser : public clsPerson
 {
 private:
 	enum enMode { EmptyMode = 0, UdateMode = 1, AddNewMode = 2 };
+
 	enMode _Mode;
 	string _UserName;
 	string _PassWord;
 	int _Permissions;
-
+	
 	bool _MarkForDelete = false;
 	const string _FileName = "User.txt";
 
@@ -29,6 +30,34 @@ private:
 		return clsUser(enMode::UdateMode, vUserData[0], vUserData[1], vUserData[2],vUserData[3], vUserData[4], vUserData[5], stoi(vUserData[6]));
 	}
 
+	vector <clsUser> _LoadDataUsersFromFiles(string FileName)
+	{
+		vector <clsUser> vUSers;
+
+		fstream Myfile;
+		Myfile.open(FileName, ios::in);
+		if (Myfile.is_open())
+		{
+			string Line;
+
+			while (getline(Myfile,Line))
+			{
+				clsUser User = _ConvertLineToObj(_FileName);
+
+			}
+		}
+
+		
+
+
+	}
+
+	void _Update()
+	{
+		vector <clsUser> _vUsers;
+		_vUsers = _
+
+	}
 
 public:
 	clsUser(enMode Mode, string FirstName, string LastName, string Email, string Phone, string UserName, string PassWord, int Permissions) : clsPerson(FirstName, LastName, Email, Phone)
@@ -122,7 +151,7 @@ public:
 
 	enum enSaveResults { svFildEmptyObject = 0, svSucceeded = 1, svFaildUserExist = 2 };
 
-	enSaveResults Save() // to be contuned:=-=-=-=-===-
+	enSaveResults Save() // 
 	{
 		switch (_Mode)
 		{
@@ -133,13 +162,15 @@ public:
 			}
 			break;
 		case clsUser::UdateMode:
-			//_Update();
+			
+			_Update();
+
 			break;
 		case clsUser::AddNewMode:
 			
-			return 
-			break;
-		default:
+			
+
+			default
 			break;
 		}
 	}

@@ -16,6 +16,12 @@
     <Filter Include="Fichiers d%27en-tête\Screens">
       <UniqueIdentifier>{d861edbb-987d-407f-9ce6-07ff6a936bf1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Core">
+      <UniqueIdentifier>{edfd485b-5a07-4ce2-817e-dc4ae3d470bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Libs">
+      <UniqueIdentifier>{769e2a05-5532-4e98-b45b-73ba782abdbb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bank Project Practicing OOP.cpp">
@@ -23,27 +29,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="clsDate.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="clsInputValidation.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="clsPeriod.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="clsUtil.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Strings.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="clsPerson.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="BankClient.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="clsMainScreen.h">
       <Filter>Fichiers d%27en-tête\Screens</Filter>
     </ClInclude>
@@ -54,10 +39,55 @@
       <Filter>Fichiers d%27en-tête\Screens</Filter>
     </ClInclude>
     <ClInclude Include="clsAddClientScreen.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
     </ClInclude>
     <ClInclude Include="clsDeleteClientScreen.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsDepositScreen.h">
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsTotalBalances.h">
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsTransactionsScreen.h">
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsUpdateClientScreen.h">
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsWithdrowScreen.h">
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="ManageUsersScreen.h">
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="BankClient.h">
+      <Filter>Fichiers d%27en-tête\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="clsUser.h">
+      <Filter>Fichiers d%27en-tête\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="clsPerson.h">
+      <Filter>Fichiers d%27en-tête\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="clsDate.h">
+      <Filter>Fichiers d%27en-tête\Libs</Filter>
+    </ClInclude>
+    <ClInclude Include="clsInputValidation.h">
+      <Filter>Fichiers d%27en-tête\Libs</Filter>
+    </ClInclude>
+    <ClInclude Include="clsFindClient.h">
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsPeriod.h">
+      <Filter>Fichiers d%27en-tête\Libs</Filter>
+    </ClInclude>
+    <ClInclude Include="clsUtil.h">
+      <Filter>Fichiers d%27en-tête\Libs</Filter>
+    </ClInclude>
+    <ClInclude Include="Strings.h">
+      <Filter>Fichiers d%27en-tête\Libs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

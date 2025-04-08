@@ -18,8 +18,8 @@ private:
 	string _UserName;
 	string _PassWord;
 	int _Permissions;
-	
 	bool _MarkForDelete = false;
+
 	const string _FileName = "User.txt";
 
 	static clsUser _ConvertLineToObj(string Line,string Separator = "#[]#")
@@ -30,7 +30,22 @@ private:
 		return clsUser(enMode::UdateMode, vUserData[0], vUserData[1], vUserData[2],vUserData[3], vUserData[4], vUserData[5], stoi(vUserData[6]));
 	}
 
-	vector <clsUser> _LoadDataUsersFromFiles(string FileName)
+	static string _ConvertObjToLine(clsUser User, string Separator = "#[]#")
+	{
+		string stClientRecord = "";
+		stClientRecord += User.Firstname + Separator;
+		stClientRecord += User.Lastname + Separator;
+		stClientRecord += User.Email + Separator;
+		stClientRecord += User.Phone + Separator;
+		stClientRecord += User.USERNAME + Separator;
+		stClientRecord += User.PASSWORD + Separator;
+		stClientRecord += to_string(User.PERMISSIONS);
+
+		return stClientRecord;
+
+	}
+
+	static vector <clsUser> _LoadDataUsersFromFiles(string FileName)
 	{
 		vector <clsUser> vUSers;
 
@@ -42,21 +57,75 @@ private:
 
 			while (getline(Myfile,Line))
 			{
-				clsUser User = _ConvertLineToObj(_FileName);
-
+				clsUser User = _ConvertLineToObj(Line);
+				vUSers.push_back(User);
 			}
+			Myfile.close();
 		}
 
 		
 
+		return vUSers;
+	}
 
+	static void _SaveUSersDataToFile(vector <clsUser> vUsers)
+	{
+		fstream MyFile;
+		MyFile.open("User.txt", ios::out);
+
+		string DataLine;
+
+		if (MyFile.is_open())
+		{
+			for (const auto& u : vUsers)  // const used to assure no modification /& avoid making copies
+			{
+				if (u._MarkForDelete == false)
+				{
+					 
+					MyFile << _ConvertObjToLine(u) << endl;
+				}
+			}
+			MyFile.close();
+		}
+	}
+
+	void _AddDataLineToFile(string DataLine)
+	{
+		fstream Myfile;
+		Myfile.open("User.tst", ios::out | ios::app);
+
+		if (Myfile.is_open())
+		{
+			Myfile << DataLine << endl;
+			Myfile.close();
+		}
+	}
+
+	void _AddNew()
+	{
+		_AddDataLineToFile(_ConvertObjToLine(*this));
 	}
 
 	void _Update()
 	{
 		vector <clsUser> _vUsers;
-		_vUsers = _
+		_vUsers = _LoadDataUsersFromFiles(_FileName);
 
+		for (auto& U : _vUsers)
+		{
+			if (U.USERNAME == USERNAME)
+			{
+				U._Mode = this->_Mode;
+				U._UserName = this->_UserName;
+				U._PassWord = this->_PassWord;
+				U._Permissions = this->_Permissions;
+				U._MarkForDelete = this->_MarkForDelete;
+
+				break;
+			}
+		}
+
+		_SaveUSersDataToFile(_vUsers);
 	}
 
 public:
@@ -107,6 +176,11 @@ public:
 		_Permissions = Perms;
 	}
 	__declspec(property(get = GetPErmissions, put = SetPErmissions))int PERMISSIONS;
+
+	string GetFileName()
+	{
+		return _FileName;
+	}
 
 	static clsUser Find(string UserName)
 	{
@@ -168,11 +242,27 @@ public:
 			break;
 		case clsUser::AddNewMode:
 			
-			
+			if (clsUser::IsUserExist(USERNAME))
+			{
+				return enSaveResults::svFaildUserExist;
+			}
+			else
+			{
+				_AddNew();
+				_Mode = enMode::UdateMode;
+				return enSaveResults::svSucceeded;
+			}
 
-			default
+		
 			break;
 		}
+	}
+
+	static bool IsUserExist(string UserName)
+	{
+
+		clsUser User = clsUser::Find(UserName);
+		return (!User.IsEmpty());
 	}
 
 };

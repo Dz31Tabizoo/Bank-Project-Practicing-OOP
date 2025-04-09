@@ -22,12 +22,12 @@ private:
 
 	const string _FileName = "User.txt";
 
-	static clsUser _ConvertLineToObj(string Line,string Separator = "#[]#")
+	static clsUser _ConvertLineToObj(string Line, string Separator = "#[]#")
 	{
 		vector<string> vUserData;
 		vUserData = clsStrings::Split(Line, Separator);
 
-		return clsUser(enMode::UdateMode, vUserData[0], vUserData[1], vUserData[2],vUserData[3], vUserData[4], vUserData[5], stoi(vUserData[6]));
+		return clsUser(enMode::UdateMode, vUserData[0], vUserData[1], vUserData[2], vUserData[3], vUserData[4], vUserData[5], stoi(vUserData[6]));
 	}
 
 	static string _ConvertObjToLine(clsUser User, string Separator = "#[]#")
@@ -45,7 +45,7 @@ private:
 
 	}
 
-	static vector <clsUser> _LoadDataUsersFromFiles(string FileName)
+	static vector <clsUser> _LoadDataUsersFromFiles(string FileName = "User.txt")
 	{
 		vector <clsUser> vUSers;
 
@@ -55,7 +55,7 @@ private:
 		{
 			string Line;
 
-			while (getline(Myfile,Line))
+			while (getline(Myfile, Line))
 			{
 				clsUser User = _ConvertLineToObj(Line);
 				vUSers.push_back(User);
@@ -63,9 +63,14 @@ private:
 			Myfile.close();
 		}
 
-		
+
 
 		return vUSers;
+	}
+
+	static clsUser _GetEmptyUserObject()
+	{
+		return clsUser(enMode::EmptyMode, "", "", "", "", "", "", 0);
 	}
 
 	static void _SaveUSersDataToFile(vector <clsUser> vUsers)
@@ -81,7 +86,7 @@ private:
 			{
 				if (u._MarkForDelete == false)
 				{
-					 
+
 					MyFile << _ConvertObjToLine(u) << endl;
 				}
 			}
@@ -146,12 +151,12 @@ public:
 	{
 		return _MarkForDelete;
 	}
-		
+
 	string GetUserName()
 	{
 		return _UserName;
 	}
-	void SetUserName(string usrnm )
+	void SetUserName(string usrnm)
 	{
 		_UserName = usrnm;
 	}
@@ -197,6 +202,10 @@ public:
 					Myfile.close();
 					return User;
 				}
+				else
+				{
+					return _GetEmptyUserObject();
+				}
 			}
 		}
 		Myfile.close();
@@ -236,12 +245,12 @@ public:
 			}
 			break;
 		case clsUser::UdateMode:
-			
+
 			_Update();
 
 			break;
 		case clsUser::AddNewMode:
-			
+
 			if (clsUser::IsUserExist(USERNAME))
 			{
 				return enSaveResults::svFaildUserExist;
@@ -253,7 +262,7 @@ public:
 				return enSaveResults::svSucceeded;
 			}
 
-		
+
 			break;
 		}
 	}
@@ -265,5 +274,44 @@ public:
 		return (!User.IsEmpty());
 	}
 
-};
+	bool Delete()
+	{
+		vector <clsUser> vUsers;
+		vUsers = _LoadDataUsersFromFiles();
 
+		for (auto& U : vUsers)
+		{
+			if (U.USERNAME == this->USERNAME)
+			{
+				U._MarkForDelete = true;
+
+				break;
+			}
+		}
+
+		_SaveUSersDataToFile(vUsers);
+
+		this->_Mode = EmptyMode;
+		this->Firstname = "";
+		this->_UserName = "";
+		this->_PassWord = "";
+		this->_Permissions = 0;
+		this->Lastname = "";
+		this->Email = "";
+		this->Phone = "";
+
+		return true;
+
+	}
+
+	static clsUser GetAddNewUserObject(string UserName)
+	{
+		return clsUser(enMode::AddNewMode, "", "", "", "", UserName, "", 0);
+	}
+	
+	static vector <clsUser> GetUsersList()
+	{
+		return _LoadDataUsersFromFiles();
+	}
+
+};

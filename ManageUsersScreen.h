@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <iostream>
 #include "clsInputValidation.h"
+#include "clsUserListScreen.h"
 
 using namespace std;
 
@@ -14,6 +15,20 @@ private :
 	enum enUsers {
 		enList = 1, enAddUSers = 2, enDeleteUSers = 3, enUpdateUSer = 4, enFindUser = 5, enMainMenueu = 6
 	};
+
+	static void _ShowUsersListScreen()
+	{
+		system("cls");
+		clsUserListScreen::ShowUserList();
+		_GobackToUserManageMenue();
+	}
+
+	static void _GobackToUserManageMenue()
+	{
+		cout << "\nPress any key to Go Back to Transaction Menue...";
+		system("pause>0");
+		ShowMageUSersMenue();
+	}
 
 	static short _ReadUsersMenueOption()
 	{
@@ -27,8 +42,10 @@ private :
 		switch (Choise)
 		{
 		case ManageUsersScreen::enList:
+			_ShowUsersListScreen();
 			break;
 		case ManageUsersScreen::enAddUSers:
+
 			break;
 		case ManageUsersScreen::enDeleteUSers:
 			break;

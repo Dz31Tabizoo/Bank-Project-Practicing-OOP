@@ -89,5 +89,8 @@
     <ClInclude Include="Strings.h">
       <Filter>Fichiers d%27en-tête\Libs</Filter>
     </ClInclude>
+    <ClInclude Include="clsUserListScreen.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

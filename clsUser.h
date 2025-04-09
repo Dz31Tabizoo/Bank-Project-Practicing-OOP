@@ -22,7 +22,7 @@ private:
 
 	const string _FileName = "User.txt";
 
-	static clsUser _ConvertLineToObj(string Line, string Separator = "#[]#")
+	static clsUser _ConvertLineToObj(string Line, string Separator = "#//#")
 	{
 		vector<string> vUserData;
 		vUserData = clsStrings::Split(Line, Separator);
@@ -30,7 +30,7 @@ private:
 		return clsUser(enMode::UdateMode, vUserData[0], vUserData[1], vUserData[2], vUserData[3], vUserData[4], vUserData[5], stoi(vUserData[6]));
 	}
 
-	static string _ConvertObjToLine(clsUser User, string Separator = "#[]#")
+	static string _ConvertObjToLine(clsUser User, string Separator = "#//#")
 	{
 		string stClientRecord = "";
 		stClientRecord += User.Firstname + Separator;
@@ -45,7 +45,7 @@ private:
 
 	}
 
-	static vector <clsUser> _LoadDataUsersFromFiles(string FileName = "User.txt")
+	static vector <clsUser> _LoadDataUsersFromFiles(string FileName = "Users.txt")
 	{
 		vector <clsUser> vUSers;
 

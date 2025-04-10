@@ -5,6 +5,7 @@
 #include <iostream>
 #include "clsInputValidation.h"
 #include "clsUserListScreen.h"
+#include "clsAddUserScreen.h"
 
 using namespace std;
 
@@ -23,9 +24,16 @@ private :
 		_GobackToUserManageMenue();
 	}
 
+	static void _ShowAddNEwUserScreen()
+	{
+		system("cls");
+		clsAddUserScreen::AddUserScreen();
+		_GobackToUserManageMenue();
+	}
+
 	static void _GobackToUserManageMenue()
 	{
-		cout << "\nPress any key to Go Back to Transaction Menue...";
+		cout << "\nPress any key to Go Back to User Manage Menue...";
 		system("pause>0");
 		ShowMageUSersMenue();
 	}
@@ -45,7 +53,7 @@ private :
 			_ShowUsersListScreen();
 			break;
 		case ManageUsersScreen::enAddUSers:
-
+			_ShowAddNEwUserScreen();
 			break;
 		case ManageUsersScreen::enDeleteUSers:
 			break;

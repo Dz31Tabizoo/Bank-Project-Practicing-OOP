@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="BankClient.h" />
     <ClInclude Include="clsAddClientScreen.h" />
+    <ClInclude Include="clsAddUserScreen.h" />
     <ClInclude Include="clsClientListScreen.h" />
     <ClInclude Include="clsDate.h" />
     <ClInclude Include="clsDeleteClientScreen.h" />

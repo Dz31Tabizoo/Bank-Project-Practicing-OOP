@@ -97,7 +97,7 @@ private:
 	void _AddDataLineToFile(string DataLine)
 	{
 		fstream Myfile;
-		Myfile.open("User.tst", ios::out | ios::app);
+		Myfile.open("Users.txt", ios::out | ios::app);
 
 		if (Myfile.is_open())
 		{
@@ -134,6 +134,10 @@ private:
 	}
 
 public:
+	enum enPermissions {
+		eAll = -1, pListClient = 1, pAddNewClient = 2, pDeleteClient = 4, pUdateClient = 8, pFindClient = 16, pTransactions = 32, pManageUsers = 64
+	};
+
 	clsUser(enMode Mode, string FirstName, string LastName, string Email, string Phone, string UserName, string PassWord, int Permissions) : clsPerson(FirstName, LastName, Email, Phone)
 	{
 		_Mode = Mode;

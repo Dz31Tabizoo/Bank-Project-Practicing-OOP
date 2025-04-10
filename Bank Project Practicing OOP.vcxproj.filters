@@ -90,7 +90,10 @@
       <Filter>Fichiers d%27en-tête\Libs</Filter>
     </ClInclude>
     <ClInclude Include="clsUserListScreen.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsAddUserScreen.h">
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

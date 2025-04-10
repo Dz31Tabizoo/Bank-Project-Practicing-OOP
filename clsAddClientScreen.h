@@ -1,8 +1,8 @@
 #pragma once
 
 #include "clsScreen.h"
-#include"BankClient.h"
-#include<iostream>
+#include "BankClient.h"
+#include <iostream>
 #include <iomanip>
 
 using namespace std;

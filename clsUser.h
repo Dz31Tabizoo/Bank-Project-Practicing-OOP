@@ -206,11 +206,9 @@ public:
 					Myfile.close();
 					return User;
 				}
-				else
-				{
-					return _GetEmptyUserObject();
-				}
+				
 			}
+			return _GetEmptyUserObject();
 		}
 		Myfile.close();
 

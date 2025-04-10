@@ -95,5 +95,8 @@
     <ClInclude Include="clsAddUserScreen.h">
       <Filter>Fichiers d%27en-tête\Screens</Filter>
     </ClInclude>
+    <ClInclude Include="clsDeleteUserScrenn.h">
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

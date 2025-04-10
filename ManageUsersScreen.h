@@ -6,6 +6,7 @@
 #include "clsInputValidation.h"
 #include "clsUserListScreen.h"
 #include "clsAddUserScreen.h"
+#include "clsDeleteUserScrenn.h"
 
 using namespace std;
 
@@ -28,6 +29,13 @@ private :
 	{
 		system("cls");
 		clsAddUserScreen::AddUserScreen();
+		_GobackToUserManageMenue();
+	}
+
+	static void _ShowDeleteUSerScreen()
+	{
+		system("cls");
+		clsDeleteUserScrenn::ShowDeleteUserScreen();
 		_GobackToUserManageMenue();
 	}
 
@@ -56,6 +64,7 @@ private :
 			_ShowAddNEwUserScreen();
 			break;
 		case ManageUsersScreen::enDeleteUSers:
+			_ShowDeleteUSerScreen();
 			break;
 		case ManageUsersScreen::enUpdateUSer:
 			break;

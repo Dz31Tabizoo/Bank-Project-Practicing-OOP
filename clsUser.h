@@ -20,7 +20,7 @@ private:
 	int _Permissions;
 	bool _MarkForDelete = false;
 
-	const string _FileName = "User.txt";
+	
 
 	static clsUser _ConvertLineToObj(string Line, string Separator = "#//#")
 	{
@@ -76,7 +76,7 @@ private:
 	static void _SaveUSersDataToFile(vector <clsUser> vUsers)
 	{
 		fstream MyFile;
-		MyFile.open("User.txt", ios::out);
+		MyFile.open("Users.txt", ios::out); // delete all and wrie again Or create New and write if dosn't existe.
 
 		string DataLine;
 
@@ -114,12 +114,16 @@ private:
 	void _Update()
 	{
 		vector <clsUser> _vUsers;
-		_vUsers = _LoadDataUsersFromFiles(_FileName);
+		_vUsers = _LoadDataUsersFromFiles("Users.txt");
 
 		for (auto& U : _vUsers)
 		{
-			if (U.USERNAME == USERNAME)
+			if (U.USERNAME == this-> USERNAME)
 			{
+				U.Firstname = this->Firstname;
+				U.Lastname = this->Lastname;
+				U.Email = this->Email;
+				U.Phone = this->Email;
 				U._Mode = this->_Mode;
 				U._UserName = this->_UserName;
 				U._PassWord = this->_PassWord;
@@ -185,11 +189,6 @@ public:
 		_Permissions = Perms;
 	}
 	__declspec(property(get = GetPErmissions, put = SetPErmissions))int PERMISSIONS;
-
-	string GetFileName()
-	{
-		return _FileName;
-	}
 
 	static clsUser Find(string UserName)
 	{

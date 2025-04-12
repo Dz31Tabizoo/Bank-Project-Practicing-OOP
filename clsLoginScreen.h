@@ -5,12 +5,15 @@
 #include "clsUser.h"
 #include "clsScreen.h"
 #include "clsFindUserScree.h"
-#include "clsMainScreen.h"
 #include "Global.h"
+#include "clsMainScreen.h"
+
 
 class clsLoginScreen : public clsScreen
 {
 private:
+
+
 	static void _Login()
 	{
 		bool LoginFailed = false;
@@ -31,13 +34,14 @@ private:
 			LoginFailed = CurrentUser.IsEmpty();
 
 		} while (LoginFailed);
-
+		
 		clsMainScreen::ShowMainMenue();
 
 	}
 
 
 public:
+
 	static void LogIn()
 	{
 		system("cls");

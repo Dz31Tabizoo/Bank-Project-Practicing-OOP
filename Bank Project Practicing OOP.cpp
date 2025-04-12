@@ -1,16 +1,10 @@
 
-#include <iostream>
-#include "BankClient.h"
-#include "clsPerson.h"
-#include "clsInputValidation.h"
-#include "clsScreen.h"
-#include"clsMainScreen.h"
-#include "clsUpdateClientScreen.h"
+
 #include "clsLoginScreen.h"
 
 using namespace std;
 
-void ReadClientInfo(clsBankClient& Client)
+/*void ReadClientInfo(clsBankClient& Client)
 {
     cout << "\nEnter FirstName: ";
     Client.Firstname = clsInputValidation::ReadString();
@@ -222,18 +216,18 @@ void ShowTotalBalances()
     cout << "\n\t\t\tTotal Balances = " << Total << "DZA.";
     cout << "\n_______________________________________________________";
 
-}
+}*/
 
 int main()
 {
     ///Test :
 
     //Find whith Acc Number
- //   clsBankClient Client1 = clsBankClient::Find("A101");
+   //   clsBankClient Client1 = clsBankClient::Find("A101");
   //  Client1.Print();
    // cout << "\n" << Client1.IsClientExiste("A101");
-    //Find With Accnumber+Pincode
-   // clsBankClient Client2 = clsBankClient::Find("A102", "4321");
+  // Find With Accnumber+Pincode
+ // clsBankClient Client2 = clsBankClient::Find("A102", "4321");
     //Client2.Print();
     // udating
     //UpdateClient(Client2);
@@ -244,8 +238,11 @@ int main()
   // ShowClientsList();
    //ShowTotalBalances();
 
-
-    clsLoginScreen::LogIn();
+    while (true)
+    {
+        clsLoginScreen::LogIn();
+    }
+    
 
     system("pause>0");
     return 0;

@@ -12,18 +12,20 @@
 #include "clsFindClient.h"
 #include "clsTransactionsScreen.h"
 #include "ManageUsersScreen.h"
-#include "clsLoginScreen.h"
+#include "Global.h"
+
 
 using namespace std;
 
 
+ class clsLoginScreen;
 
 class clsMainScreen : protected clsScreen
 {
 private:
 
 	enum enMainManueOptions {
-		eListClient = 1, eAddNewClient = 2, eDeleteClient = 3, eUpdateClient = 4, eMngUsers = 7, eFindClient = 5, eLogout = 8, eTransaction = 6
+		eListClient = 1, eAddNewClient = 2, eDeleteClient = 3, eUpdateClient = 4, eMngUsers = 7, eFindClient = 5, eExit = 8, eTransaction = 6
 	};
 	
 	
@@ -51,8 +53,18 @@ private:
 	}
 	static void _Logout()
 	{
-		system("cls");
-		clsLoginScreen::LogIn();
+		
+		CurrentUser = clsUser::Find(" ");
+
+		if (CurrentUser.IsEmpty())
+		{
+			cout << "\a";
+		}
+		else
+		{
+			exit(1);
+		}
+
 	}
 	static void _ShowAddNewClientsScreen()
 	{
@@ -124,7 +136,7 @@ private:
 			_ShowFindClientScreen();
 
 			break;
-		case clsMainScreen::eLogout:
+		case clsMainScreen::eExit:
 			
 			_Logout();
 			
@@ -165,7 +177,7 @@ public:
 		cout << setw(38) << left << "" << "\t[5] Find Client.\n";
 		cout << setw(38) << left << "" << "\t[6] Transactions.\n";
 		cout << setw(38) << left << "" << "\t[7] Manage Users.\n";
-		cout << setw(38) << left << "" << "\t[8] Logout.\n";
+		cout << setw(38) << left << "" << "\t[8] Exite.\n";
 
 		_PerformMainMenueOptions(enMainManueOptions(_ReadMainMenueOption()));
 	}

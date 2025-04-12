@@ -108,7 +108,7 @@
       <Filter>Fichiers d%27en-tête\Screens</Filter>
     </ClInclude>
     <ClInclude Include="Global.h">
-      <Filter>Fichiers d%27en-tête\Screens</Filter>
+      <Filter>Fichiers d%27en-tête\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

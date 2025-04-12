@@ -8,6 +8,7 @@
 #include "clsAddUserScreen.h"
 #include "clsDeleteUserScrenn.h"
 #include "clsUserUpdateScreen.h"
+#include "clsFindUserScree.h"
 
 using namespace std;
 
@@ -37,6 +38,13 @@ private :
 	{
 		system("cls");
 		clsAddUserScreen::AddUserScreen();
+		_GobackToUserManageMenue();
+	}
+
+	static void _ShowFindUserScreen()
+	{
+		system("cls");
+		clsFindUserScree::FindUserScreen();
 		_GobackToUserManageMenue();
 	}
 
@@ -78,8 +86,10 @@ private :
 			_ShowUSerUpdateScrenn();
 			break;
 		case ManageUsersScreen::enFindUser:
+			_ShowFindUserScreen();
 			break;
 		case ManageUsersScreen::enMainMenueu:
+			ShowMageUSersMenue();
 			break;
 		default:
 			break;

@@ -101,5 +101,8 @@
     <ClInclude Include="clsUserUpdateScreen.h">
       <Filter>Fichiers d%27en-tête\Screens</Filter>
     </ClInclude>
+    <ClInclude Include="clsFindUserScree.h">
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

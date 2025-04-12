@@ -141,6 +141,7 @@
     <ClInclude Include="clsFindClient.h" />
     <ClInclude Include="clsFindUserScree.h" />
     <ClInclude Include="clsInputValidation.h" />
+    <ClInclude Include="clsLoginScreen.h" />
     <ClInclude Include="clsMainScreen.h" />
     <ClInclude Include="clsPeriod.h" />
     <ClInclude Include="clsPerson.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="clsUserUpdateScreen.h" />
     <ClInclude Include="clsUtil.h" />
     <ClInclude Include="clsWithdrowScreen.h" />
+    <ClInclude Include="Global.h" />
     <ClInclude Include="ManageUsersScreen.h" />
     <ClInclude Include="Strings.h" />
   </ItemGroup>

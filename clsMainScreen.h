@@ -12,6 +12,7 @@
 #include "clsFindClient.h"
 #include "clsTransactionsScreen.h"
 #include "ManageUsersScreen.h"
+#include "clsLoginScreen.h"
 
 using namespace std;
 
@@ -48,7 +49,11 @@ private:
 
 		_GoBackToMainMenueScreen();
 	}
-
+	static void _Logout()
+	{
+		system("cls");
+		clsLoginScreen::LogIn();
+	}
 	static void _ShowAddNewClientsScreen()
 	{
 		system("cls");
@@ -110,7 +115,9 @@ private:
 			break;
 		
 		case clsMainScreen::eMngUsers:
+
 			_ShowManageUsersScreen();
+			
 			break;
 		case clsMainScreen::eFindClient:
 
@@ -118,8 +125,9 @@ private:
 
 			break;
 		case clsMainScreen::eLogout:
-			system("cls");
-			_GoBackToMainMenueScreen();
+			
+			_Logout();
+			
 			break;
 		case clsMainScreen::eTransaction:
 			

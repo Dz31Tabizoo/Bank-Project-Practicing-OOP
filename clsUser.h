@@ -228,6 +228,10 @@ public:
 					Myfile.close();
 					return User;
 				}
+				else
+				{
+					return _GetEmptyUserObject();
+				}
 			}
 		}
 		Myfile.close();
@@ -305,6 +309,7 @@ public:
 
 	}
 
+	
 	static clsUser GetAddNewUserObject(string UserName)
 	{
 		return clsUser(enMode::AddNewMode, "", "", "", "", UserName, "", 0);

@@ -104,5 +104,11 @@
     <ClInclude Include="clsFindUserScree.h">
       <Filter>Fichiers d%27en-tête\Screens</Filter>
     </ClInclude>
+    <ClInclude Include="clsLoginScreen.h">
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

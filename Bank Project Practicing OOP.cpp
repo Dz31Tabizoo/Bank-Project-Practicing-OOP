@@ -6,6 +6,7 @@
 #include "clsScreen.h"
 #include"clsMainScreen.h"
 #include "clsUpdateClientScreen.h"
+#include "clsLoginScreen.h"
 
 using namespace std;
 
@@ -244,7 +245,7 @@ int main()
    //ShowTotalBalances();
 
 
-    clsMainScreen::ShowMainMenue();
+    clsLoginScreen::LogIn();
 
     system("pause>0");
     return 0;

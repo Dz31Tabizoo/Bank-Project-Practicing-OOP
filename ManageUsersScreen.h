@@ -101,6 +101,10 @@ public:
 
 	static void ShowMageUSersMenue()
 	{
+		if (!CheckAccessRights(clsUser::pManageUsers))
+		{
+			return;
+		}
 		system("cls");
 		_DrawScreenHeader("Users Managment","\t  Screen");
 

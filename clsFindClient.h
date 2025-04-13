@@ -18,6 +18,10 @@ public:
 
 	static void FindClient()
 	{
+		if (!CheckAccessRights(clsUser::pFindClient))
+		{
+			return;
+		}
 		_DrawScreenHeader("Find Client", "\t  Screen");
 		cout << "\nEnter the Account Number you want to search: ";
 		string AccountNumber = clsInputValidation::ReadString();

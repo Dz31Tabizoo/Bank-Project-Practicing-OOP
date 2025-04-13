@@ -228,11 +228,9 @@ public:
 					Myfile.close();
 					return User;
 				}
-				else
-				{
-					return _GetEmptyUserObject();
-				}
+				
 			}
+			return _GetEmptyUserObject();
 		}
 		Myfile.close();
 	}
@@ -322,6 +320,6 @@ public:
 
 	bool CheckAccessPermission(enPermissions Perms)
 	{
-		return (this->PERMISSIONS == enPermissions::eAll) ? true : (((Perms & this->PERMISSIONS) == Perms) ? true : false) ;
+		return (this->PERMISSIONS == enPermissions::eAll) ? true : (((Perms & this->PERMISSIONS) == Perms) ? false : true) ;
 	}
 };

@@ -47,6 +47,10 @@ private:
 public:
 	static void ShowUpdateClientScreen()
 	{
+        if (!CheckAccessRights(clsUser::pUdateClient))
+        {
+            return;
+        }
         _DrawScreenHeader("Update Clients", "\t    Screen");
         cout << "\nEnter a Account Number to Update: ";
         string AccountNumber ;

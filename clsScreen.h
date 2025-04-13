@@ -2,6 +2,8 @@
 #include "clsDate.h"
 #include "Global.h"
 #include "clsUser.h"
+#include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -11,8 +13,14 @@ protected:
 
 	static void GetDate(clsDate Date)
 	{
-		cout << setw(37) << left << "" << "\t\t ";
-		Date.Print();
+		cout << setw(37) << left << "\n" ;
+		cout << "Date: "; Date.Print();
+	}
+	static void PrintCurrrentUser()
+	{
+		
+		cout << setw(36) << left << "" ;
+		cout << "User: " << CurrentUser.USERNAME << endl;
 	}
 
 	static void _DrawScreenHeader(string Title,string Subtitle="")
@@ -25,6 +33,7 @@ protected:
 		}
 		clsDate Date;
 		 GetDate(Date);
+		 PrintCurrrentUser();
 		cout << setw(37) << left <<"" << "___________________________________" << endl;
 	}
 

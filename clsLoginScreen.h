@@ -45,7 +45,7 @@ public:
 	static void LogIn()
 	{
 		system("cls");
-		_DrawScreenHeader("Learning OOP", "Login Screen");
+		_DrawScreenHeader("Learning OOP", "\tLogin Screen");
 		_Login();
 
 	}

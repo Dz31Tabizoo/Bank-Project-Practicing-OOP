@@ -240,7 +240,10 @@ int main()
 
     while (true)
     {
-        clsLoginScreen::LogIn();
+        if (!clsLoginScreen::LogIn())  // to exite after 3 failed login 
+        {
+            break;
+        }
     }
     
 

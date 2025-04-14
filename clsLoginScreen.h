@@ -14,18 +14,35 @@ class clsLoginScreen : public clsScreen
 private:
 
 
-	static void _Login()
+	static bool _Login()
 	{
 		bool LoginFailed = false;
 		string Username, PassWord;
+		short counter = 3;
 
 		do
 		{
 			if (LoginFailed)
 			{
+				
+				system("cls");
+				_DrawScreenHeader("Learning OOP", "\tLogin Screen");
 				cout << "\nInvalide User Name / PassWord! \n\n";
+				
+					counter--;
+					
+					if (counter==0)
+					{
+						cout << "\nYou Are Locked after 3 trails !!!";
+						system("pause>0");
+						
+						
+						return false;
+					}
+					cout << "\nYou Have " << counter << " Trials To Login.";
+				
 			}
-			cout << "Enter Username ? ";
+			cout << "\nEnter Username ? ";
 			cin >> Username;
 			cout << "\nEnter PassWord ?";
 			cin >> PassWord;
@@ -34,19 +51,19 @@ private:
 			LoginFailed = CurrentUser.IsEmpty();
 
 		} while (LoginFailed);
-		
-		clsMainScreen::ShowMainMenue();
 
+		clsMainScreen::ShowMainMenue();
+		return true;
 	}
 
 
 public:
 
-	static void LogIn()
+	static bool LogIn()
 	{
 		system("cls");
 		_DrawScreenHeader("Learning OOP", "\tLogin Screen");
-		_Login();
+		return _Login();
 
 	}
 

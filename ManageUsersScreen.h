@@ -89,10 +89,7 @@ private :
 			_ShowFindUserScreen();
 			break;
 		case ManageUsersScreen::enMainMenueu:
-			ShowMageUSersMenue();
-			break;
-		default:
-			break;
+		break;
 		}
 
 	}

@@ -1,4 +1,5 @@
 #pragma once
+#pragma warning(disable : 4996)
 
 #include <iostream>
 #include <string>
@@ -116,6 +117,23 @@ public:
 		
 		return clsDate (day,Month,Year);
 	}*/
+
+	static string GetSysetmDateTimeString()
+	{
+		time_t T = time(0);
+		tm* now = localtime(&T);
+
+		short day, month, year, hour, minute, second;
+
+		year = now->tm_year + 1900;
+		month = now->tm_mon + 1;
+		day = now->tm_mday;
+		hour = now->tm_hour;
+		minute = now-> tm_min;
+		second = now->tm_sec;
+		
+		return (to_string(day) + "/" + to_string(month) + "/" + to_string(year) + "-" + to_string(hour) + ":" + to_string(minute) + ":" + to_string(second));
+	}
 
 	static bool IsValidDate(clsDate Date)
 	{

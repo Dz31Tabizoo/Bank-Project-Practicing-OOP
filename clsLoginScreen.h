@@ -52,7 +52,9 @@ private:
 
 		} while (LoginFailed);
 
+		CurrentUser.RegisterLogIn();
 		clsMainScreen::ShowMainMenue();
+
 		return true;
 	}
 

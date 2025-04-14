@@ -6,6 +6,7 @@
 #include <vector>
 #include "Strings.h"
 #include <string>
+#include "clsDate.h"
 
 using namespace std;
 
@@ -43,6 +44,17 @@ private:
 
 		return stClientRecord;
 
+	}
+
+	 string _PrepareLogIn(string Separator = "#//#")
+	{
+		string LoginRecord = "";
+		LoginRecord += clsDate::GetSysetmDateTimeString() + Separator;
+		LoginRecord += USERNAME + Separator;
+		LoginRecord += PASSWORD + Separator;
+		LoginRecord += to_string(PERMISSIONS);
+
+		return LoginRecord;
 	}
 
 	static vector <clsUser> _LoadDataUsersFromFiles(string FileName = "Users.txt")
@@ -321,5 +333,18 @@ public:
 	bool CheckAccessPermission(enPermissions Perms)
 	{
 		return (this->PERMISSIONS == enPermissions::eAll) ? true : (((Perms & this->PERMISSIONS) == Perms) ? false : true) ;
+	}
+
+	void RegisterLogIn()
+	{
+		string stDataLine = _PrepareLogIn();
+		fstream MyFile;
+		MyFile.open("LoginRegister.txt", ios::out | ios::app);
+
+		if (MyFile.is_open())
+		{
+			MyFile << stDataLine << endl;
+			MyFile.close();
+		}
 	}
 };

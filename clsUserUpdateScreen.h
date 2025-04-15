@@ -106,6 +106,13 @@ private:
 			Perm += clsUser::enPermissions::pManageUsers;
 		}
 
+		cout << "\nLogIn Register List? y/n? ";
+		cin >> answer;
+		if (answer == 'y' || answer == 'Y')
+		{
+			Perm += clsUser::enPermissions::pLogInRegister;
+		}
+
 	}
 
 public:

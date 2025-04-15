@@ -161,9 +161,7 @@ private:
 	}
 
 public:
-	enum enPermissions {
-		eAll = -1, pListClient = 1, pAddNewClient = 2, pDeleteClient = 4, pUdateClient = 8, pFindClient = 16, pTransactions = 32, pManageUsers = 64, pLogInRegister
-	};
+	enum enPermissions { eAll = -1, pListClient = 1, pAddNewClient = 2, pDeleteClient = 4, pUdateClient = 8, pFindClient = 16, pTransactions = 32, pManageUsers = 64, pLogInRegister = 128 };
 
 	struct stLoginRegisterRecords
 	{

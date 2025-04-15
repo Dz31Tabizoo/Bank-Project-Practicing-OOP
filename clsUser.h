@@ -20,8 +20,19 @@ private:
 	string _PassWord;
 	int _Permissions;
 	bool _MarkForDelete = false;
-
+	struct stLoginRegisterRecords; // public mumber
 	
+	static stLoginRegisterRecords _ConvertLoginRecordsLineTostRecords(string line)
+	{
+		stLoginRegisterRecords stRecord;
+		vector <string> LoginRegDataLine = clsStrings::Split(line, "#//#");
+		stRecord.Time = LoginRegDataLine[0];
+		stRecord.UserName = LoginRegDataLine[1];
+		stRecord.Password = LoginRegDataLine[2];
+		stRecord.Permission = stoi( LoginRegDataLine[3]);
+
+		return stRecord;
+	}
 
 	static clsUser _ConvertLineToObj(string Line, string Separator = "#//#")
 	{
@@ -152,6 +163,14 @@ private:
 public:
 	enum enPermissions {
 		eAll = -1, pListClient = 1, pAddNewClient = 2, pDeleteClient = 4, pUdateClient = 8, pFindClient = 16, pTransactions = 32, pManageUsers = 64
+	};
+
+	struct stLoginRegisterRecords
+	{
+		string Time;
+		string UserName;
+		string Password;
+		int Permission;
 	};
 
 	clsUser(enMode Mode, string FirstName, string LastName, string Email, string Phone, string UserName, string PassWord, int Permissions) : clsPerson(FirstName, LastName, Email, Phone)
@@ -347,4 +366,26 @@ public:
 			MyFile.close();
 		}
 	}
+
+	static vector <stLoginRegisterRecords> GetLoginRegisterLiset()
+	{
+		vector<stLoginRegisterRecords>vRecords;
+		
+		fstream Myfile;
+		Myfile.open("LoginRegister.txt", ios::in);
+
+		if (Myfile.is_open())
+		{
+			string Line;
+			stLoginRegisterRecords structRecords;
+			while (getline(Myfile,Line))
+			{
+				structRecords = _ConvertLoginRecordsLineTostRecords(Line);
+				vRecords.push_back(structRecords);
+			}
+		}
+
+		return vRecords;
+	}
+
 };

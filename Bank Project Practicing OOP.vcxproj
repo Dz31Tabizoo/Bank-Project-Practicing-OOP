@@ -141,6 +141,7 @@
     <ClInclude Include="clsFindClient.h" />
     <ClInclude Include="clsFindUserScree.h" />
     <ClInclude Include="clsInputValidation.h" />
+    <ClInclude Include="clsLoginRegisterListScreen.h" />
     <ClInclude Include="clsLoginScreen.h" />
     <ClInclude Include="clsMainScreen.h" />
     <ClInclude Include="clsPeriod.h" />

@@ -13,7 +13,7 @@
 #include "clsTransactionsScreen.h"
 #include "ManageUsersScreen.h"
 #include "Global.h"
-
+#include "clsLoginRegisterListScreen.h"
 
 using namespace std;
 
@@ -25,11 +25,16 @@ class clsMainScreen : protected clsScreen
 private:
 
 	enum enMainManueOptions {
-		eListClient = 1, eAddNewClient = 2, eDeleteClient = 3, eUpdateClient = 4, eMngUsers = 7, eFindClient = 5, eExit = 8, eTransaction = 6
+		eListClient = 1, eAddNewClient = 2, eDeleteClient = 3, eUpdateClient = 4, eMngUsers = 7, eFindClient = 5, eExit = 9, eTransaction = 6, eLoginRegister = 8
 	};
 	
 	
-
+	static void _ShowLoginRegisterList()
+	{
+		system("cls");
+		clsLoginRegisterListScreen::LogInRegisterList();
+		_GoBackToMainMenueScreen();
+	}
 	static void _GoBackToMainMenueScreen()
 	{
 		
@@ -136,11 +141,17 @@ private:
 			_ShowFindClientScreen();
 
 			break;
+
+		case clsMainScreen::eLoginRegister:
+			_ShowLoginRegisterList();
+			break;
 		case clsMainScreen::eExit:
 			
 			_Logout();
 			
 			break;
+
+			
 		case clsMainScreen::eTransaction:
 			
 			_ShowTransactionsMenue();
@@ -153,8 +164,8 @@ private:
 
 	static short _ReadMainMenueOption()
 	{
-		cout << setw(38) << "" << "Choose What you want to do [1] to [8]:\n";
-		short Choise = clsInputValidation::ReadshortBetween("\t\t\t\tWrong Choise, Please select your choise from 1 to 8:\n", 1, 8);
+		cout << setw(38) << "" << "Choose What you want to do [1] to [9]:\n";
+		short Choise = clsInputValidation::ReadshortBetween("\t\t\t\tWrong Choise, Please select your choise from 1 to 9:\n", 1, 9);
 		return Choise;
 	}
 
@@ -177,7 +188,8 @@ public:
 		cout << setw(38) << left << "" << "\t[5] Find Client.\n";
 		cout << setw(38) << left << "" << "\t[6] Transactions.\n";
 		cout << setw(38) << left << "" << "\t[7] Manage Users.\n";
-		cout << setw(38) << left << "" << "\t[8] Exite.\n";
+		cout << setw(38) << left << "" << "\t[8] LogIn Register.\n";
+		cout << setw(38) << left << "" << "\t[9] Logout.\n";
 
 		_PerformMainMenueOptions(enMainManueOptions(_ReadMainMenueOption()));
 	}

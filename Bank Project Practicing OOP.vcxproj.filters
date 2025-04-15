@@ -113,5 +113,8 @@
     <ClInclude Include="clsLoginRegisterListScreen.h">
       <Filter>Fichiers d%27en-tête\Screens</Filter>
     </ClInclude>
+    <ClInclude Include="clsTransferScreen.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

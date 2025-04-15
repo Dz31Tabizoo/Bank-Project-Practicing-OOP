@@ -111,7 +111,7 @@
       <Filter>Fichiers d%27en-tête\Core</Filter>
     </ClInclude>
     <ClInclude Include="clsLoginRegisterListScreen.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

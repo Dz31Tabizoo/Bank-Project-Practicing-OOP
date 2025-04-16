@@ -19,9 +19,38 @@ class clsTransferScreen :public clsScreen
 		cout <<"\n" << Client.FullName() << "New Balance: " << Client.Account_Balance << endl;
 	}
 
-	
+	static bool _TraqnsOperation(clsBankClient& Client1,clsBankClient& client2, int AmountTrans)
+	{
+		if (Client1.Account_Balance >= AmountTrans)
+		{
+			cout << "\nAre You Sure You Want To Execute This Operation ?  [Y/N]";
+			char answer = ' ';
+			cin >> answer;
+			
+			if (answer == 'y' || answer == 'Y')
+			{
+				Client1.Account_Balance -= AmountTrans;
+				client2.Account_Balance += AmountTrans;
 
 
+				
+
+				cout << "\n\t--Transfer Secceed--";
+				_PrintClientBalance(Client1);
+				_PrintClientBalance(client2);
+
+				return true;
+			}
+		}
+		else
+		{
+			cout << "\nAccount Balance is insufisant!";
+			return false;
+		}
+
+	}
+
+	/// Abu-Hadhoud Used Deposit & Withdrow Functions.
 
 
 public:
@@ -45,15 +74,15 @@ public:
 
 			}
 
+			int AmountTransf;
+			cout << "\n\n Enter the Amount you want to transfer:";
+			AmountTransf = clsInputValidation::ReadIntNumber();
 
-
-
-
-
-
+			if (_TraqnsOperation(Sender,Reciver,AmountTransf))
+			{
+				Sender.Save();
+				Reciver.Save();
+			}
 	}
-
-
-
 };
 

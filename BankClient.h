@@ -20,6 +20,23 @@ private:
 	float _accountbalance;
 	bool _MarkforDelete = 0;
 
+	struct stTransfLog;
+
+	static stTransfLog _CovertLineTostruc(string Line,string separator ="#//#")
+	{
+		stTransfLog TRNSLOG;
+		vector <string> vTranStringLOG = clsStrings::Split(Line, separator);
+		TRNSLOG.Date = vTranStringLOG[0];
+		TRNSLOG.SenderACC = vTranStringLOG[1];
+		TRNSLOG.ReciverACC = vTranStringLOG[2];
+		TRNSLOG.TransAmount = vTranStringLOG[3];
+		TRNSLOG.SenderNewBalance = vTranStringLOG[4];
+		TRNSLOG.ReciverNEwBalance = vTranStringLOG[5];
+		TRNSLOG.CurrentUser = vTranStringLOG[6];
+
+		return TRNSLOG;
+	}
+
 	static string _ConvertClientObjectToLine(clsBankClient Client, string Seperator = "#//#")
 	{
 		string stClientRecord = "";
@@ -329,6 +346,39 @@ public:
 		default:
 			break;
 		}
+	}
+
+
+	struct stTransfLog {
+		string Date;
+		string SenderACC;
+		string ReciverACC;
+		string TransAmount;
+		string SenderNewBalance;
+		string ReciverNEwBalance;
+		string CurrentUser;
+	};
+
+
+	static vector<stTransfLog> GetTransRecFromFile(string Separator = "#//#")
+	{
+		vector <stTransfLog> TrRec;
+		string Line;
+		stTransfLog Transslog;
+		fstream MyFile;
+		MyFile.open("TransferLog.txt", ios::in);
+
+			
+		while (getline(MyFile, Line))
+		{
+			Transslog = _CovertLineTostruc(Line);
+			TrRec.push_back(Transslog);
+
+		}
+			
+		return TrRec;
+
+
 	}
 };
 

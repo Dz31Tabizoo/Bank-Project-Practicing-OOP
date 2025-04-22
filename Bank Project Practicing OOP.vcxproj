@@ -134,6 +134,7 @@
     <ClInclude Include="clsAddClientScreen.h" />
     <ClInclude Include="clsAddUserScreen.h" />
     <ClInclude Include="clsClientListScreen.h" />
+    <ClInclude Include="clsCurrency.h" />
     <ClInclude Include="clsDate.h" />
     <ClInclude Include="clsDeleteClientScreen.h" />
     <ClInclude Include="clsDeleteUserScrenn.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="clsUtil.h" />
     <ClInclude Include="clsWithdrowScreen.h" />
     <ClInclude Include="Global.h" />
+    <ClInclude Include="InterfaceCommunication.h" />
     <ClInclude Include="ManageUsersScreen.h" />
     <ClInclude Include="Strings.h" />
   </ItemGroup>

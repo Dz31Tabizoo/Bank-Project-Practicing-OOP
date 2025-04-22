@@ -26,7 +26,7 @@ protected:
 	static void _DrawScreenHeader(string Title,string Subtitle="")
 	{
 		cout << setw(37) << left <<"" << "***********************************" << endl;
-		cout << setw(37) << left <<"" << "\t\t" << Title << endl;
+		cout << setw(37) << left <<"" << "\t" << Title << endl;
 		if (Subtitle != "")
 		{
 			cout << setw(37) << left << "" << "\t" << Subtitle << endl;

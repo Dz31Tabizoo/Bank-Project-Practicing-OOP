@@ -7,6 +7,7 @@
 #include "Strings.h"
 #include <string>
 #include "clsDate.h"
+#include "clsUtil.h"
 
 using namespace std;
 
@@ -28,7 +29,7 @@ private:
 		vector <string> LoginRegDataLine = clsStrings::Split(line, "#//#");
 		stRecord.Time = LoginRegDataLine[0];
 		stRecord.UserName = LoginRegDataLine[1];
-		stRecord.Password = LoginRegDataLine[2];
+		stRecord.Password = clsUtil::DecryptText (LoginRegDataLine[2],2) ;
 		stRecord.Permission = stoi( LoginRegDataLine[3]);
 
 		return stRecord;
@@ -39,7 +40,7 @@ private:
 		vector<string> vUserData;
 		vUserData = clsStrings::Split(Line, Separator);
 
-		return clsUser(enMode::UdateMode, vUserData[0], vUserData[1], vUserData[2], vUserData[3], vUserData[4], vUserData[5], stoi(vUserData[6]));
+		return clsUser(enMode::UdateMode, vUserData[0], vUserData[1], vUserData[2], vUserData[3], vUserData[4], clsUtil::DecryptText( vUserData[5], 2), stoi(vUserData[6]));
 	}
 
 	static string _ConvertObjToLine(clsUser User, string Separator = "#//#")
@@ -50,7 +51,7 @@ private:
 		stClientRecord += User.Email + Separator;
 		stClientRecord += User.Phone + Separator;
 		stClientRecord += User.USERNAME + Separator;
-		stClientRecord += User.PASSWORD + Separator;
+		stClientRecord += clsUtil::EncryptText(User.PASSWORD,2) + Separator;
 		stClientRecord += to_string(User.PERMISSIONS);
 
 		return stClientRecord;
@@ -62,7 +63,7 @@ private:
 		string LoginRecord = "";
 		LoginRecord += clsDate::GetSysetmDateTimeString() + Separator;
 		LoginRecord += USERNAME + Separator;
-		LoginRecord += PASSWORD + Separator;
+		LoginRecord += clsUtil::EncryptText( PASSWORD ,2) + Separator;
 		LoginRecord += to_string(PERMISSIONS);
 
 		return LoginRecord;
@@ -158,6 +159,11 @@ private:
 		}
 
 		_SaveUSersDataToFile(_vUsers);
+	}
+
+	static string _EncryptedPassword(string PassWord)
+	{
+		return clsUtil::EncryptText(PassWord, 2);
 	}
 
 public:

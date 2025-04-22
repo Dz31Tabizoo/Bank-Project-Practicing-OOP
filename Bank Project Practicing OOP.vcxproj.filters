@@ -119,8 +119,11 @@
     <ClInclude Include="InterfaceCommunication.h">
       <Filter>Fichiers d%27en-tête\Core</Filter>
     </ClInclude>
+    <ClInclude Include="clsCurrency.h">
+      <Filter>Fichiers d%27en-tête\Core</Filter>
+    </ClInclude>
     <ClInclude Include="clsTransferLogList.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

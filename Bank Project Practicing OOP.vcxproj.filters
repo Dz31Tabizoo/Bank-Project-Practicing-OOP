@@ -125,11 +125,11 @@
     <ClInclude Include="clsTransferLogList.h">
       <Filter>Fichiers d%27en-tête\Screens</Filter>
     </ClInclude>
-    <ClInclude Include="clsCurrencyMainScreen.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="clsCurrencyListScreen.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsCurrencyMainScreen.h">
+      <Filter>Fichiers d%27en-tête\Screens</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

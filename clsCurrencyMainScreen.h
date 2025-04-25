@@ -4,20 +4,35 @@
 #include<string>
 #include<iomanip>
 #include "clsInputValidation.h"
+#include "clsCurrencyListScreen.h"
 
 
 class clsCurrencyMainScreen : public clsScreen
 {
 private:
-	enum _enMenu {enCurrencyListe = 0, enFindCureency=1,enUpdateCurrency=2,enCurrencyCalculator=3,enMainMenue=4 };
+	enum _enMenu {enCurrencyListe = 1, enFindCureency=2,enUpdateCurrency=3,enCurrencyCalculator=4,enMainMenue=5 };
 
+	static void GoBackToCurrencyMainMenu()
+	{
+		cout << "\nPress Eny Key To Goback to Main Menue...";
+		system("pause>0");
+		ShowCurrencyMainMenue();
+	}
 
+	static void _ShowCurrencyListScreen()
+	{
+		system("cls");
+		clsCurrencyListScreen::ShowCurrencyListScreen();
+		GoBackToCurrencyMainMenu();
+	}
 
 	static void _PerformCurrencyMenueOptions(_enMenu Options)
 	{
 		switch (Options)
 		{
 		case clsCurrencyMainScreen::enCurrencyListe:
+
+			_ShowCurrencyListScreen();
 			
 			break;
 

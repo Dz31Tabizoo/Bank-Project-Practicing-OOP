@@ -7,7 +7,6 @@
 #include "Strings.h"
 
 
-using namespace std;
 
 class clsCurrency
 {
@@ -142,26 +141,22 @@ public:
 
 		fstream Myfile;
 		string DataLine;
-		Myfile.open("Currencises.txt", ios::in);
+		Myfile.open("Currencies.txt", ios::in);
 		if (Myfile.is_open())
 		{
 			while (getline(Myfile, DataLine))
 			{
 				clsCurrency Obj = _ConvertLineToCurrencyObj(DataLine);
-				if (clsStrings::UpperAllString(Obj.GetCurrencyCode())== Currency_Code)
+				if (clsStrings::UpperAllString(Obj.GetCurrencyCode()) == Currency_Code)
 				{
 					Myfile.close();
 					return Obj;
 				}
-				else
-				{
-					Myfile.close();
-					return _GetEmptyObj();
-
-				}
 
 			}
-		}	
+			Myfile.close();
+		}
+		return _GetEmptyObj();
 	}
 
 	static clsCurrency FindByCountry(string Currency_Country)
@@ -170,7 +165,7 @@ public:
 
 		fstream Myfile;
 		string DataLine;
-		Myfile.open("Currencises.txt", ios::in);
+		Myfile.open("Currencies.txt", ios::in);
 		if (Myfile.is_open())
 		{
 			while (getline(Myfile, DataLine))
@@ -181,14 +176,20 @@ public:
 					Myfile.close();
 					return Obj;
 				}
-				else
-				{
-					Myfile.close();
-					return _GetEmptyObj();
-				}
 
 			}
+			Myfile.close();
 		}
+		return _GetEmptyObj();
+	}
+
+	void Print()
+	{
+		cout << "\n--------------------------------";
+		cout << "\n Currency Name: " << this->GetCurrencyName();
+		cout << "\nCurrency Code: " << this->GetCurrencyCode();
+		cout << "\nCuurency Rate: " << this->RATE;
+		cout << "\n--------------------------------";
 	}
 
 	static bool IsCurrencyExiste(string CurrencyCode)

@@ -135,6 +135,7 @@
     <ClInclude Include="clsAddUserScreen.h" />
     <ClInclude Include="clsClientListScreen.h" />
     <ClInclude Include="clsCurrency.h" />
+    <ClInclude Include="clsCurrencyFindScreen.h" />
     <ClInclude Include="clsCurrencyListScreen.h" />
     <ClInclude Include="clsCurrencyMainScreen.h" />
     <ClInclude Include="clsDate.h" />

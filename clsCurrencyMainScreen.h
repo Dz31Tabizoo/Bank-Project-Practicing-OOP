@@ -5,7 +5,7 @@
 #include<iomanip>
 #include "clsInputValidation.h"
 #include "clsCurrencyListScreen.h"
-
+#include "clsCurrencyFindScreen.h"
 
 class clsCurrencyMainScreen : public clsScreen
 {
@@ -17,6 +17,13 @@ private:
 		cout << "\nPress Eny Key To Goback to Main Menue...";
 		system("pause>0");
 		ShowCurrencyMainMenue();
+	}
+
+	static void _ShowFindCurScreen()
+	{
+		system("cls");
+		clsCurrencyFindScreen::ShowFindCurrencyScreen();
+		GoBackToCurrencyMainMenu();
 	}
 
 	static void _ShowCurrencyListScreen()
@@ -37,6 +44,8 @@ private:
 			break;
 
 		case clsCurrencyMainScreen::enFindCureency:
+
+			_ShowFindCurScreen();
 
 			break;
 

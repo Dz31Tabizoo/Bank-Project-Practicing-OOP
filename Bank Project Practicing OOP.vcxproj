@@ -165,6 +165,7 @@
     <ClInclude Include="clsWithdrowScreen.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="InterfaceCommunication.h" />
+    <ClInclude Include="LearnTemplateFunction.h" />
     <ClInclude Include="ManageUsersScreen.h" />
     <ClInclude Include="Strings.h" />
   </ItemGroup>

@@ -7,7 +7,7 @@
 #include "clsCurrencyListScreen.h"
 #include "clsCurrencyFindScreen.h"
 #include "clsCurrencyRateUpdatScreen.h"
-
+#include "ClsCurrenciesCalculator2.h"
 
 class clsCurrencyMainScreen : public clsScreen
 {
@@ -32,6 +32,13 @@ private:
 	{
 		system("cls");
 		clsCurrencyFindScreen::ShowFindCurrencyScreen();
+		GoBackToCurrencyMainMenu();
+	}
+
+	static void _ShowCurrenciesCalculatorScreen()
+	{
+		system("cls");
+		clsCurrenciesCalculator2::ShowCurresnciesCalculatorScreen2();
 		GoBackToCurrencyMainMenu();
 	}
 
@@ -65,7 +72,7 @@ private:
 			break;
 
 		case clsCurrencyMainScreen::enCurrencyCalculator:
-
+			_ShowCurrenciesCalculatorScreen();
 			break;
 
 		case clsCurrencyMainScreen::enMainMenue:

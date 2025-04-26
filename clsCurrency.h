@@ -202,5 +202,25 @@ public:
 	{
 		return _LoadCurancysDataFromFile();
 	}
+	static void CurrencyCalculator(clsCurrency Cur1, clsCurrency Cur2)
+	{
+
+		Cur1.Print();
+		Cur2.Print();
+		float _amount = 0.1;
+		float Result = 0;
+		cout << "\n Enter the amount of " << Cur1.GetCurrencyName() << " : to Calculate Value in " << Cur2.GetCurrencyName() << " Currency." << endl;
+		cin >> _amount;
+
+		Result = _amount * Cur2.RATE / Cur1.RATE;
+
+		cout << "\n" << _amount << " " << Cur1.GetCurrencyCode() << " = " << Result << Cur2.GetCurrencyCode();
+
+	}
+
+
+
+
+
 };
 

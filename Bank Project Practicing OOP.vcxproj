@@ -138,6 +138,7 @@
     <ClInclude Include="clsCurrencyFindScreen.h" />
     <ClInclude Include="clsCurrencyListScreen.h" />
     <ClInclude Include="clsCurrencyMainScreen.h" />
+    <ClInclude Include="clsCurrencyRateUpdatScreen.h" />
     <ClInclude Include="clsDate.h" />
     <ClInclude Include="clsDeleteClientScreen.h" />
     <ClInclude Include="clsDeleteUserScrenn.h" />

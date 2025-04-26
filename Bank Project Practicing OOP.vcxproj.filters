@@ -134,5 +134,8 @@
     <ClInclude Include="clsCurrencyFindScreen.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="clsCurrencyRateUpdatScreen.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

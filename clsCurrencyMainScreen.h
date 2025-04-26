@@ -6,6 +6,8 @@
 #include "clsInputValidation.h"
 #include "clsCurrencyListScreen.h"
 #include "clsCurrencyFindScreen.h"
+#include "clsCurrencyRateUpdatScreen.h"
+
 
 class clsCurrencyMainScreen : public clsScreen
 {
@@ -17,6 +19,13 @@ private:
 		cout << "\nPress Eny Key To Goback to Main Menue...";
 		system("pause>0");
 		ShowCurrencyMainMenue();
+	}
+
+	static void _ShowCurrencyRateScreenUpdate()
+	{
+		system("cls");
+		clsCurrencyRateUpdatScreen::ShowUpdateCurrencyRateScreen();
+		GoBackToCurrencyMainMenu();
 	}
 
 	static void _ShowFindCurScreen()
@@ -50,6 +59,8 @@ private:
 			break;
 
 		case clsCurrencyMainScreen::enUpdateCurrency:
+
+			_ShowCurrencyRateScreenUpdate();
 
 			break;
 
